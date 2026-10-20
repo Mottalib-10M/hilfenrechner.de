@@ -1,0 +1,20 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { CONTACT_EMAIL, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { contactPageSchema } from '../../lib/seo';
+const lang = 'de';
+const description = 'Schreiben Sie uns, wenn ein Betrag veraltet ist, Ihr Bescheid deutlich vom Rechner abweicht, eine Leistung fehlt oder Sie den Rechner auf Ihrer Seite einbinden möchten.';
+---
+<PageLayout title={`Kontakt zu ${SITE_NAMES[lang]}: Fehler melden, Rechner einbinden`} description={description} lang={lang} noindex={true} jsonLd={[contactPageSchema({ name: 'Kontakt', description, path: route('contact', lang), lang })]} breadcrumbs={[{ label: 'Kontakt' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Kontakt</h1>
+    <p>E-Mail: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Antwort meist innerhalb einer Woche.</p>
+    <h2>Ihr Bescheid weicht vom Rechner ab</h2>
+    <p>Schicken Sie den Link aus dem Rechner und die Beträge aus dem Berechnungsbogen Ihres Bescheids, ohne Namen, Adresse, Kundennummer oder Bedarfsgemeinschaftsnummer. Häufige Gründe für einen Unterschied: eine Miete über der Angemessenheitsgrenze, ein Mehrbedarf, Absetzbeträge für Versicherungen oder Fahrtkosten, ein schwankendes Einkommen oder Vermögen. Liegt der Fehler bei uns, korrigieren wir ihn und nehmen den Fall als Test auf.</p>
+    <h2>Rechner einbinden</h2>
+    <p>Beratungsstellen, Vereine und Redaktionen können den Rechner kostenlos einbinden: <a href={route('widget', lang)}>Rechner einbinden</a>.</p>
+    <h2>Was wir nicht leisten</h2>
+    <p>Keine Beratung im Einzelfall, keine Prüfung von Bescheiden, keine Hilfe beim Widerspruch und keine Antragstellung. Dafür sind die Sozialberatungsstellen der Wohlfahrtsverbände und die zuständigen Stellen da.</p>
+  </div>
+</PageLayout>

@@ -1,0 +1,143 @@
+---
+/**
+ * Startseite: der Haushaltsrechner auf dem ersten Bildschirm, dann Eckzahlen, gerechnete Musterhaushalte,
+ * die Vorrangprüfung in Schritten, wo welcher Antrag hingehört, was noch kommt und die Quellen (RECETTE §5, §21).
+ * Jede Zahl kommt aus dem Rechenkern und der Parameterdatei.
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import Tool from './Tool.astro';
+import { route } from '../i18n/routes';
+import { PAGES } from '../lib/guides';
+import { groupLabel, GROUPS_ORDER } from '../i18n/nav';
+import { helpers } from '../lib/helpers';
+import { LAST_UPDATED, AUTHOR_NAME } from '../data/site-config';
+import { faqSchema, webApplicationSchema, websiteSchema, organizationSchema } from '../lib/seo';
+const lang = 'de';
+const h = helpers(true);
+const { P, VG, m, pc, date, a } = h;
+const R = P.regelbedarf, ST = P.wohngeld.mietstufen as Record<string, number>, ref = P.reform;
+const uvgB = P.uvg.betraege as number[];
+const vs = (P.vermoegen.stufen as number[][]);
+
+type Muster = { name: string; ort: string; i: Parameters<typeof VG.vergleich>[0] };
+const H = (paar: boolean, brutto: number[], kinder: number[], miete: number, heizung: number, ort: string) => ({ paar, brutto, kinder, unterhalt: 0, miete, heizung, mietstufe: ST[ort], elterngeld: 0, sonstiges: 0 });
+const muster: Muster[] = [
+  { name: `Alleinerziehend, ein Kind (4), ${m(1400)} brutto`, ort: 'Berlin', i: H(false, [1400], [4], 600, 90, 'Berlin') },
+  { name: `Alleinerziehend, zwei Kinder (8 und 13), ${m(2200)} brutto`, ort: 'Essen', i: H(false, [2200], [8, 13], 750, 110, 'Essen') },
+  { name: `Paar, zwei Kinder (3 und 7), ein Verdienst ${m(2600)} brutto`, ort: 'Dortmund', i: H(true, [2600, 0], [3, 7], 800, 120, 'Dortmund') },
+  { name: `Paar, drei Kinder (2, 5, 10), ${m(3000)} und ${m(600)} brutto`, ort: 'Hannover', i: H(true, [3000, 600], [2, 5, 10], 1000, 140, 'Hannover') },
+  { name: `Allein, ohne Kinder, ${m(1200)} brutto`, ort: 'Dresden', i: H(false, [1200], [], 450, 70, 'Dresden') },
+  { name: 'Allein, ohne Kinder, ohne Einkommen', ort: 'Kiel', i: H(false, [0], [], 500, 80, 'Kiel') },
+];
+const res = muster.map((x) => ({ ...x, r: VG.vergleich(x.i) }));
+const zahl = (n: number) => (n > 0 ? m(n) : '–');
+const optName: Record<string, string> = { gsg: 'Grundsicherungsgeld', vorrang: 'Wohngeld und Kinderzuschlag', 'nur-kg': 'nur Kindergeld' };
+const musterRows = res.map(({ name, ort, i, r }) => {
+  const best = r.optionen.find((o) => o.id === r.empfehlung)!;
+  const was = r.empfehlung === 'vorrang' ? (r.kiz.gesamt > 0 && best.leistungen.some((l) => l.name === 'Kinderzuschlag') ? 'Wohngeld und Kinderzuschlag' : 'Wohngeld') : optName[r.empfehlung];
+  return [`${name}; ${ort} (Mietstufe ${i.mietstufe}), Miete ${m(i.miete)} + ${m(i.heizung)} Heizung`, zahl(r.gsg.zahlbetrag), zahl(r.wg.wohngeld), zahl(r.kiz.gesamt), zahl(r.kindergeld + r.uvgSumme), `<strong>${was}</strong>`, `<strong>${m(best.verfuegbar)}</strong>`];
+});
+const ae1 = res[0].r, paar2 = res[2].r, single = res[4].r;
+const ae1Gsg = ae1.optionen.find((o) => o.id === 'gsg')!, ae1Vor = ae1.optionen.find((o) => o.id === 'vorrang')!;
+
+const antrag = [
+  ['Grundsicherungsgeld', VG.STELLE.gsg, 'ab dem Ersten des Antragsmonats', `${P.gsg.bewilligungMonate} Monate`, h.src('sgb2_37', '§ 37 SGB II')],
+  ['Wohngeld', VG.STELLE.wg, 'ab dem Ersten des Antragsmonats', `in der Regel ${P.antrag.wohngeldBewilligungMonate}, höchstens ${P.antrag.wohngeldBewilligungMax} Monate`, h.src('wogg_25', '§ 25 WoGG')],
+  ['Kinderzuschlag', VG.STELLE.kiz, 'ab dem Antragsmonat, nicht für zurückliegende Monate', `${P.kiz.bewilligung} Monate`, h.src('bkgg_5', '§ 5 BKGG')],
+  ['Kindergeld', VG.STELLE.kg, `bis zu ${P.antrag.kindergeldRueckMonate} Monate zurück`, 'bis das Kind 18 wird, in Ausbildung länger', h.src('estg_66', '§ 66 EStG')],
+  ['Unterhaltsvorschuss', VG.STELLE.uvg, `${P.antrag.uvgRueckMonate} Monat zurück, wenn Sie sich um den Unterhalt bemüht haben`, 'bis das Kind 18 wird', h.src('uvg_4', '§ 4 UVG')],
+  ['Elterngeld', VG.STELLE.eg, `${P.elterngeld.rueckwirkendMonate} Lebensmonate vor dem Antragsmonat`, 'für die beantragten Lebensmonate', h.src('beeg_7', '§ 7 BEEG')],
+];
+const kg = P.kindergeld.next, wgE = P.wohngeld.entwurf2027;
+const pending = [
+  ['Regelbedarfe ab 1. Januar 2027', 'Fortschreibungsverordnung noch nicht verkündet; bis dahin gelten die Beträge von 2026', 'à venir'],
+  ['Kindergeld ab 1. Januar 2027', `${m(kg.betrag2027)} je Kind, ab 2028 ${m(kg.betrag2028)}: Regierungsentwurf (BT-Drs. 21/8235), nicht beschlossen`, 'Entwurf'],
+  ['Wohngeld ab 1. Januar 2027', `Gesetzentwurf (BT-Drs. ${wgE.drucksache}) mit neuer Heizkostenkomponente und neuen Mietstufen; keine Erhöhung nach § 43 WoGG verkündet`, 'Entwurf'],
+  ['Name „Bürgergeld“', `Ämter dürfen ihn bis ${date(ref.buergergeldBegriffBis)} weiter verwenden; Rechtsgrundlage ist schon das Grundsicherungsgeld`, 'beschlossen'],
+  ['Weitere Teile der Reform', `Änderungen bei der Förderung (§ 16 SGB II) ab ${date(ref.inkraft2027)}, ein weiterer Teil ab ${date(ref.inkraft2029)}`, 'beschlossen'],
+];
+
+const faqs = [
+  { q: 'Kann ich Wohngeld und Grundsicherungsgeld gleichzeitig bekommen?', a: `Nein. Wer Grundsicherungsgeld bezieht, hat keinen Anspruch auf Wohngeld, weil das Jobcenter die Wohnkosten schon trägt. Umgekehrt muss das Jobcenter Sie auf Wohngeld und Kinderzuschlag verweisen, wenn beide zusammen Ihren Bedarf und den Ihrer Familie für mindestens ${P.gsg.vorrangDreiMonate} Monate decken. Der Rechner prüft beides für denselben Haushalt.` },
+  { q: 'Warum zeigt der Rechner ein Ergebnis mit weniger Geld als empfohlen?', a: 'Weil die Leistungen nicht frei wählbar sind. Reichen Wohngeld und Kinderzuschlag aus, gehen sie dem Grundsicherungsgeld vor, auch wenn das Jobcenter rechnerisch etwas mehr zahlen würde. Nur wenn höchstens 100 € zum Bedarf fehlen und Sie arbeiten, dürfen Sie wählen. Der Rechner nennt deshalb die Kombination, die nach dem Gesetz gilt, und zeigt die andere daneben.' },
+  { q: 'Zählt das Kindergeld als Einkommen?', a: `Beim Grundsicherungsgeld und beim Kinderzuschlag ja, es mindert den Bedarf des Kindes. Beim Wohngeld nein, es bleibt außer Betracht. Deshalb kann ein Haushalt mit ${m(P.kindergeld.betrag)} Kindergeld je Kind beim Jobcenter knapp über der Grenze liegen und trotzdem Wohngeld bekommen. Der Rechner setzt das Kindergeld in jeder Leistung so an, wie das jeweilige Gesetz es verlangt.` },
+  { q: 'Welche Angaben braucht der Rechner?', a: 'Ob Sie allein oder zu zweit sind, das Alter jedes Kindes, das Bruttogehalt, die Kaltmiete mit kalten Nebenkosten, die Heizkosten und den Wohnort für die Mietstufe. Unter „Mehr“ kommen Elterngeld und sonstiges Einkommen dazu. Name, Adresse oder Steuer-ID fragt er nicht ab, und alles bleibt in Ihrem Browser.' },
+  { q: 'Ist das Ergebnis ein Bescheid?', a: 'Nein. Es ist eine Schätzung nach den veröffentlichten Regeln und Beträgen. Über jede Leistung entscheidet die zuständige Stelle nach Ihren Nachweisen, und Vermögen, Mehrbedarfe oder eine unangemessen hohe Miete prüft erst sie. Stellen Sie den Antrag lieber einmal zu viel: Ein abgelehnter Antrag kostet nichts, ein versäumter Monat oft schon.' },
+  { q: 'Was hat sich am 1. Juli 2026 geändert?', a: `Aus dem Bürgergeld wurde das Grundsicherungsgeld (${ref.bgbl}). Die Regelbedarfe blieben gleich, doch das Schonvermögen hängt jetzt vom Alter ab und beginnt bei ${m(vs[0][2])}, Leistungsminderungen betragen ${pc(P.minderung.satz)} für ${P.minderung.monate} Monate, und die Miete übernimmt das Jobcenter auch im ersten Jahr nur bis zum ${h.dec(P.kdu.deckelFaktor, 1)}-Fachen der angemessenen Höhe.` },
+];
+const jsonLd = [webApplicationSchema({ name: 'Sozialleistungen-Rechner 2026', description: 'Grundsicherungsgeld, Wohngeld, Kinderzuschlag, Kindergeld, Unterhaltsvorschuss und Elterngeld für einen Haushalt, mit Vorrangprüfung.', path: route('home', lang), lang }), websiteSchema(lang), organizationSchema(lang), faqSchema(faqs, lang)];
+const groups = GROUPS_ORDER.map((g) => ({ g, pages: PAGES.filter((p) => p.group === g).sort((x, y) => x.order - y.order) })).filter((x) => x.pages.length);
+const nSrc = Object.keys(P.sources).length;
+---
+<PageLayout title="Sozialleistungen Rechner 2026: Grundsicherung, Wohngeld, KiZ" description="Sozialleistungen Rechner 2026: Grundsicherungsgeld, Wohngeld, Kinderzuschlag, Kindergeld und Unterhaltsvorschuss für Ihren Haushalt, mit Vorrang und Stelle." lang={lang} jsonLd={jsonLd} faqs={faqs}>
+  <header class="mb-3">
+    <h1 class="text-[1.75rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">Welche Sozialleistungen stehen Ihrem Haushalt 2026 zu?</h1>
+    <p class="mt-2 text-base text-navy-700 sm:text-lg">Geben Sie Haushalt, Alter der Kinder, Bruttolohn, Miete und Wohnort ein. Der Rechner schätzt Grundsicherungsgeld, Wohngeld, Kinderzuschlag, Kindergeld und Unterhaltsvorschuss, sagt, welche Kombination nach dem Gesetz gilt, und wo Sie sie beantragen.</p>
+  </header>
+  <div data-outil class="mb-4"><Tool tool={{ kind: 'haushalt', props: {} }} primary={true} /></div>
+  <p class="mb-8 text-sm text-navy-600">Rechtsstand {date(h.TODAY)}, Grundsicherungsgeld nach {ref.bgbl} · zuletzt geprüft <time datetime={LAST_UPDATED}>{date(LAST_UPDATED)}</time> · {AUTHOR_NAME} · <a href={route('method', lang)} class="underline hover:text-navy-900">Rechenweg und Quellen</a> · <a href={route('about', lang)} class="underline hover:text-navy-900">Über uns</a></p>
+
+  <div class="prose prose-slate max-w-none">
+    <p>Diese Seite macht es besser als der erste Treffer bei Google, weil sie nicht nur das Grundsicherungsgeld ausrechnet, sondern für denselben Haushalt mit einer einzigen Eingabe auch Wohngeld, Kinderzuschlag, Kindergeld, Unterhaltsvorschuss und Elterngeld, und mit Zahlen sagt, welche Kombination Ihnen nach dem Gesetz zusteht, wie viel Geld dann im Monat bleibt und welche Stelle den Antrag bekommt. Die amtlichen Rechner beantworten jeweils nur eine Leistung: der Wohngeldrechner des Bundesbauministeriums das Wohngeld, der Kinderzuschlag-Check der Familienkasse den Kinderzuschlag, die Rechner der Jobcenter das Grundsicherungsgeld. Die Frage einer Familie mit kleinem Einkommen lautet aber anders: Wohngeld und Kinderzuschlag oder Grundsicherungsgeld? Darauf gibt es nach § 12a SGB II genau eine Antwort, die vom Einkommen, von der Miete und vom Alter der Kinder abhängt. Seit dem {date(ref.inkraft)} gilt dafür das neue Recht des Grundsicherungsgeldes. Jeder Betrag dieser Seite stammt aus dem Gesetz oder einer amtlichen Bekanntmachung, mit Datum; entscheiden wird die zuständige Stelle.</p>
+  </div>
+
+  <section class="not-prose my-10" aria-labelledby="keys-title">
+    <h2 id="keys-title" class="text-2xl font-bold text-navy-900">Die Beträge, die 2026 gelten</h2>
+    <dl class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="border-l-4 border-accent-500 pl-4"><dt class="text-sm text-navy-600">Regelbedarf allein lebend</dt><dd class="text-xl font-semibold text-navy-900">{m(R.rbs1)}</dd><dd class="text-sm text-navy-700">Paare je {m(R.rbs2)}, Kinder {m(R.rbs6)} bis {m(R.rbs4)}</dd></div>
+      <div class="border-l-4 border-accent-500 pl-4"><dt class="text-sm text-navy-600">Kindergeld je Kind</dt><dd class="text-xl font-semibold text-navy-900">{m(P.kindergeld.betrag)}</dd><dd class="text-sm text-navy-700">seit {date(P.kindergeld.from)}, für jedes Kind gleich</dd></div>
+      <div class="border-l-4 border-accent-500 pl-4"><dt class="text-sm text-navy-600">Kinderzuschlag höchstens</dt><dd class="text-xl font-semibold text-navy-900">{m(P.kiz.hoechst)}</dd><dd class="text-sm text-navy-700">je Kind und Monat, ab {m(P.kiz.mindestAllein)} oder {m(P.kiz.mindestPaar)} brutto</dd></div>
+      <div class="border-l-4 border-accent-500 pl-4"><dt class="text-sm text-navy-600">Unterhaltsvorschuss</dt><dd class="text-xl font-semibold text-navy-900">{m(uvgB[0])} bis {m(uvgB[2])}</dd><dd class="text-sm text-navy-700">je nach Alter des Kindes, bis zum 18. Geburtstag</dd></div>
+      <div class="border-l-4 border-accent-500 pl-4"><dt class="text-sm text-navy-600">Elterngeld Basis</dt><dd class="text-xl font-semibold text-navy-900">{m(P.elterngeld.mindest)} bis {m(P.elterngeld.hoechst)}</dd><dd class="text-sm text-navy-700">{pc(P.elterngeld.rateMin)} bis {pc(P.elterngeld.rate)} des Nettos vor der Geburt</dd></div>
+      <div class="border-l-4 border-accent-500 pl-4"><dt class="text-sm text-navy-600">Schonvermögen je Person</dt><dd class="text-xl font-semibold text-navy-900">{m(vs[0][2])} bis {m(vs[vs.length - 1][2])}</dd><dd class="text-sm text-navy-700">nach Alter, seit {date(P.vermoegen.from)}</dd></div>
+    </dl>
+  </section>
+
+  <section class="not-prose my-10" aria-labelledby="muster-title">
+    <h2 id="muster-title" class="text-2xl font-bold text-navy-900">Sechs Haushalte, durchgerechnet</h2>
+    <p class="mt-2 max-w-3xl text-navy-700">Leistungen im Monat nach dem Rechtsstand vom {date(h.TODAY)}, ohne Unterhalt vom anderen Elternteil, ohne Vermögen und Mehrbedarfe. „Was gilt“ ist die Kombination nach § 12a SGB II; die letzte Spalte ist das ganze Geld des Haushalts mit Nettolohn.</p>
+    <Fragment set:html={h.table(['Haushalt', 'Grund­sicherungs­geld', 'Wohngeld', 'Kinder­zuschlag', 'Kindergeld + UV', 'Was gilt', 'Im Monat'], musterRows, undefined, ['l', 'r', 'r', 'r', 'r', 'l', 'r'])} />
+  </section>
+
+  <div class="prose prose-slate max-w-none">
+    <p>Die erste Zeile zeigt den häufigsten Irrtum. Rechnerisch käme die Alleinerziehende in Berlin auf {m(ae1.gsg.zahlbetrag)} Grundsicherungsgeld. Wohngeld und Kinderzuschlag decken ihren Bedarf aber schon, also gehen sie vor, und mit ihnen hat sie sogar {m(ae1Vor.verfuegbar - ae1Gsg.verfuegbar)} mehr im Monat. Bei der Familie in Dortmund ist der Abstand größer: {m(paar2.optionen.find((o) => o.id === 'vorrang')!.verfuegbar)} mit Wohngeld und Kinderzuschlag gegen {m(paar2.optionen.find((o) => o.id === 'gsg')!.verfuegbar)} beim Jobcenter. Ohne Kinder ist es oft umgekehrt: Der Alleinstehende in Dresden bekäme {m(single.wg.wohngeld)} Wohngeld, doch damit fehlen ihm {m(single.luecke)} zum Bedarf, und dann bleibt nur das Grundsicherungsgeld. Ein Wahlrecht gibt es dort nicht, weil der Kinderzuschlag fehlt.</p>
+    <h2>So entscheidet sich, welche Leistung gilt</h2>
+    <ol>
+      <li><strong>Bedarf nach dem SGB II.</strong> Regelbedarfe aller Personen, Mehrbedarfe, Miete und Heizung. Das ist die Grenze, an der alles gemessen wird (<Fragment set:html={a('buergergeld-2026', 'Beträge 2026')} />).</li>
+      <li><strong>Einkommen nach Freibeträgen.</strong> Vom Nettolohn bleiben {m(P.gsg.freibetrag.grund)} und ein gestaffelter Teil frei; Kindergeld und Unterhalt zählen beim Kind (<Fragment set:html={a('hinzuverdienst', 'Freibeträge beim Hinzuverdienst')} />).</li>
+      <li><strong>Wohngeld und Kinderzuschlag rechnen.</strong> Beide haben eigene Formeln mit höheren Grenzen; der Kinderzuschlag setzt bei Paaren {m(P.kiz.mindestPaar)}, bei Alleinerziehenden {m(P.kiz.mindestAllein)} brutto voraus.</li>
+      <li><strong>Reicht das?</strong> Decken Lohn, Kindergeld, Wohngeld und Kinderzuschlag den Bedarf, gehen sie vor. Fehlen höchstens {m(P.kiz.luecke)} und Sie arbeiten, dürfen Sie wählen. Sonst ist das Jobcenter zuständig (<Fragment set:html={a('vorrangpruefung', 'die Vorrangprüfung im Einzelnen')} />).</li>
+    </ol>
+    <p>Kindergeld und Unterhaltsvorschuss stehen neben allem anderen und werden in jedem Fall beantragt. Elterngeld zählt beim Grundsicherungsgeld und beim Kinderzuschlag als Einkommen; frei bleiben bis zu {m(P.elterngeld.freibetragSgb2)} nur, wenn Sie vor der Geburt gearbeitet haben (<Fragment set:html={a('elterngeld-und-sozialleistungen', 'Elterngeld und Sozialleistungen')} />). Wer mit Kindern arbeitet und knapp verdient, sollte die Seite <Fragment set:html={a('wohngeld-oder-grundsicherung', 'Wohngeld oder Grundsicherung')} /> lesen; wer allein erzieht, die Seite <Fragment set:html={a('alleinerziehend-leistungen', 'Leistungen für Alleinerziehende')} />.</p>
+  </div>
+
+  <section class="not-prose my-10" aria-labelledby="antrag-title">
+    <h2 id="antrag-title" class="text-2xl font-bold text-navy-900">Wo Sie welchen Antrag stellen</h2>
+    <p class="mt-2 max-w-3xl text-navy-700">Jede Leistung hat ihre eigene Stelle. Ein Antrag gilt erst ab seinem Eingang; deshalb lieber früh und formlos stellen und Unterlagen nachreichen.</p>
+    <Fragment set:html={h.table(['Leistung', 'Stelle', 'Gezahlt', 'Bewilligt für', 'Rechtsgrundlage'], antrag, undefined, ['l', 'l', 'l', 'l', 'l'])} />
+  </section>
+
+  <section class="not-prose my-10" aria-labelledby="pending-title">
+    <h2 id="pending-title" class="text-2xl font-bold text-navy-900">Was beschlossen ist und was noch kommt</h2>
+    <p class="mt-2 max-w-3xl text-navy-700">Ein Betrag fließt erst in den Rechner, wenn er verkündet ist. Stand {date(LAST_UPDATED)}:</p>
+    <Fragment set:html={h.table(['Was', 'Bekannt ist', 'Status'], pending, undefined, ['l', 'l', 'l'])} />
+  </section>
+
+  <div class="prose prose-slate max-w-none">
+    <h2>Woher die Zahlen kommen</h2>
+    <p>Grundsicherungsgeld nach dem <Fragment set:html={h.src('bgbl_2026_107', `Gesetz vom 16. April 2026 (${ref.bgbl})`)} /> und der <Fragment set:html={h.src('rbsfv_2026', 'Regelbedarfsverordnung 2026')} />; Wohngeld nach den Anlagen 1 bis 3 des Wohngeldgesetzes und der <Fragment set:html={h.src('wogv_anlage', 'Mietstufenliste der Wohngeldverordnung')} />; Kinderzuschlag nach <Fragment set:html={h.src('bkgg_6a', '§ 6a BKGG')} /> und dem <Fragment set:html={h.src('ba_kiz_merkblatt', 'Merkblatt der Familienkasse')} />; Unterhaltsvorschuss nach <Fragment set:html={h.src('uvg_2', '§ 2 UVG')} />; Elterngeld nach <Fragment set:html={h.src('beeg_2', '§ 2 BEEG')} />. Insgesamt {nSrc} amtliche Quellen, jede auf den Seiten genannt, die sie nutzen.</p>
+    <p>Was der Rechner nicht prüft: Ihr Vermögen, Mehrbedarfe wegen Krankheit oder Behinderung, ob Ihre Miete beim Jobcenter angemessen ist, und Sonderfälle wie Studium, Ausbildung oder Aufenthaltsrecht. Er ersetzt keine Beratung; kostenlos beraten Sozialberatungsstellen der Wohlfahrtsverbände und die Jobcenter selbst. Nichts, was Sie eingeben, verlässt Ihren Browser.</p>
+  </div>
+
+  <section class="mt-12" aria-labelledby="guides-title">
+    <h2 id="guides-title" class="text-2xl font-bold text-navy-900">Alle Rechner und Erklärungen</h2>
+    <div class="mt-4 grid gap-x-10 gap-y-6 md:grid-cols-2">
+      {groups.map(({ g, pages }) => (
+        <div>
+          <h3 class="border-b border-navy-200 pb-1 text-sm font-semibold uppercase tracking-wide text-navy-600">{groupLabel(g)}</h3>
+          <ul class="mt-2 space-y-2">{pages.map((p) => <li><a href={route(p.id, lang)} class="font-medium text-accent-700 underline-offset-2 hover:underline">{p.nav}</a><span class="block text-sm text-navy-600">{p.card}</span></li>)}</ul>
+        </div>
+      ))}
+    </div>
+  </section>
+</PageLayout>

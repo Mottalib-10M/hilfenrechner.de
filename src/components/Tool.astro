@@ -1,0 +1,20 @@
+---
+/** Ein Werkzeug mit den Vorgaben der Seite: `haushalt` (alle Leistungen, Vergleich), `elterngeld` oder `mini:<art>` (lib/mini-specs.ts). */
+import Haushalt from './calc/Haushalt';
+import MiniSim from './calc/MiniSim';
+import Elterngeld from './calc/Elterngeld';
+import { route } from '../i18n/routes';
+import type { ToolDef } from '../lib/guide-types';
+interface Props { tool: ToolDef; primary?: boolean; idPrefix?: string }
+const { tool, primary = false, idPrefix } = Astro.props;
+const props = (tool.props ?? {}) as Record<string, any>;
+const methodHref = route('method', 'de');
+const ziel: Record<string, string> = { elterngeld: 'elterngeld-rechner', mutterschaft: 'elterngeld-rechner' };
+const art = tool.kind.replace(/^mini:/, '');
+const href = route(ziel[art] ?? 'home', 'de');
+---
+{tool.kind === 'haushalt'
+  ? <Haushalt client:load {...props} methodHref={methodHref} idPrefix={idPrefix ?? (primary ? 'r' : 'm')} />
+  : tool.kind === 'elterngeld'
+  ? <Elterngeld client:load {...props} methodHref={methodHref} idPrefix={idPrefix ?? (primary ? 'r' : 'm')} />
+  : <MiniSim client:load kind={tool.kind} lang="de" href={href} />}

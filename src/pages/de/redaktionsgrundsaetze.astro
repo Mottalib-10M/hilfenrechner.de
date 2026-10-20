@@ -1,0 +1,27 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED, REVIEW_CYCLE_MONTHS, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+const lang = 'de';
+---
+<PageLayout title={`Redaktionsgrundsätze von ${SITE_NAMES[lang]}: Quellen und Prüfung`} description="Woher Regelbedarfe, Wohngeldformel, Kinderzuschlag und Kindergeld kommen, wann sie geprüft werden, wie Gesetzentwürfe behandelt werden und was bei einem Fehler geschieht." lang={lang} noindex={true} breadcrumbs={[{ label: 'Redaktionsgrundsätze' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Redaktionsgrundsätze und Korrekturen</h1>
+    <p>Wer mit einem veralteten Betrag plant, stellt einen Antrag zu spät oder gar nicht. Deshalb steht hier, woher jede Zahl kommt und was passiert, wenn eine nicht stimmt.</p>
+    <h2>Verantwortung</h2><p>Inhalte und Rechner verantwortet {AUTHOR_NAME}. Kontakt: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+    <h2>Nur Primärquellen</h2>
+    <ul>
+      <li><strong>Gesetze und Verordnungen</strong>: gesetze-im-internet.de und das Bundesgesetzblatt (recht.bund.de), vor allem SGB II, Wohngeldgesetz mit Verordnung, Bundeskindergeldgesetz, Einkommensteuergesetz, Unterhaltsvorschussgesetz, BEEG und Mutterschutzgesetz;</li>
+      <li><strong>Behörden</strong>: Merkblätter und Weisungen der Bundesagentur für Arbeit und der Familienkasse, Veröffentlichungen der Bundesministerien;</li>
+      <li><strong>Gesetzgebung</strong>: Drucksachen des Bundestages für alles, was noch nicht beschlossen ist.</li>
+    </ul>
+    <p>Ratgeberseiten, Foren und andere Rechner sind keine Quelle, auch wenn sie oben in den Suchergebnissen stehen.</p>
+    <h2>Entwürfe und Ankündigungen</h2><p>Ein Betrag, der nur im Gesetzentwurf steht oder angekündigt ist, heißt hier „à venir“ oder „Entwurf“, mit Drucksache und Datum. Der Rechner rechnet damit nicht, solange das Gesetz oder die Verordnung nicht verkündet ist.</p>
+    <h2>Prüfung vor jeder Veröffentlichung</h2><p>Die Rechenkerne laufen gegen amtliche Rechenbeispiele, die Tabellenwerte der Gesetze und unabhängig nachgerechnete Fälle. Ein abweichender Wert stoppt die Veröffentlichung.</p>
+    <h2>Rhythmus</h2><p>Vollständige Durchsicht mindestens alle {REVIEW_CYCLE_MONTHS} Monate, dazu nach jeder Regelbedarfsverordnung, jeder Wohngeldanpassung, jeder Änderung von Kindergeld, Mindestunterhalt oder Kinderzuschlag und jeder Reform des SGB II.</p>
+    <h2>Umgang mit Fehlern</h2>
+    <ol><li>Prüfung an der Primärquelle.</li><li>Korrektur in der Parameterdatei oder im Rechner und ein neuer Test.</li><li>Neues Datum auf allen Seiten; eine inhaltliche Korrektur wird auf der Seite vermerkt.</li></ol>
+    <h2>Unabhängigkeit</h2><p>Kein Geld von Behörden, Verbänden, Anwälten oder Vermittlern. Keine Empfehlung einer Kanzlei, kein Formular, kein Rückruf.</p>
+    <p>Siehe auch <a href={route('method', lang)}>Rechenweg und Quellen</a>. Fassung: {LAST_UPDATED}.</p>
+  </div>
+</PageLayout>

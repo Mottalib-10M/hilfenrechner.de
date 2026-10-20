@@ -1,0 +1,20 @@
+---
+/** Einbettbarer Rechner (iframe): ohne Navigation, noindex, nicht in der Sitemap (astro.config). */
+import '../../styles/global.css';
+import Haushalt from '../../components/calc/Haushalt';
+import { SITE_URL, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+---
+<!doctype html>
+<html lang="de-DE">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sozialleistungen für einen Haushalt 2026 (Widget)</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={`${SITE_URL}${route('home', 'de')}`} />
+  </head>
+  <body class="bg-white p-2 text-navy-900">
+    <Haushalt client:load methodHref={`${SITE_URL}${route('method', 'de')}`} idPrefix="emb" />
+    <p class="mt-2 text-center text-xs text-navy-600"><a href={`${SITE_URL}/de/`} target="_blank" rel="noopener" class="underline">{SITE_NAMES.de}</a> · Grundsicherungsgeld, Wohngeld, Kinderzuschlag und Kindergeld für einen Haushalt, im Browser gerechnet</p>
+  </body>
+</html>

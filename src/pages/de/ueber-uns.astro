@@ -1,0 +1,26 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { YEAR, LAST_UPDATED, AUTHOR_NAME, CONTACT_EMAIL, AUTHOR_ROLE, SITE_NAMES, LANG_TAGS } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { personSchema, organizationSchema, breadcrumbSchema, profilePageSchema } from '../../lib/seo';
+import { displayDate } from '../../lib/format';
+const lang = 'de';
+---
+<PageLayout title="Hilfenrechner: wer den Rechner für Sozialleistungen macht" description="Wer hinter dem Rechner für Grundsicherungsgeld, Wohngeld, Kinderzuschlag und Kindergeld steht, wie jeder Betrag geprüft wird und was die Seite nicht tut." lang={lang} jsonLd={[personSchema(lang), organizationSchema(lang), profilePageSchema({ path: route('about', lang), lang }), breadcrumbSchema([{ name: 'Start', path: route('home', lang) }, { name: 'Über uns', path: route('about', lang) }])]} breadcrumbs={[{ label: 'Über uns' }]}>
+  <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">Über {SITE_NAMES.de}</h1></header>
+  <div class="prose prose-slate max-w-none">
+    <div class="not-prose mb-6"><p class="text-lg font-semibold text-navy-900">{AUTHOR_NAME}</p><p class="text-navy-700">{AUTHOR_ROLE[lang]}</p></div>
+    <p>{SITE_NAMES.de} wird von Radif Partners herausgegeben, einem unabhängigen Herausgeber von Rechnern. Anlass war das Lesen der Suchergebnisse zu „Bürgergeld Rechner“, „Wohngeld Rechner“ und „Kinderzuschlag Rechner“ im Oktober 2026: Jeder amtliche Rechner beantwortet nur eine Leistung, und kein Treffer sagte einer Familie mit kleinem Einkommen, ob für sie Wohngeld und Kinderzuschlag oder das Grundsicherungsgeld gilt, obwohl das Gesetz darauf genau eine Antwort gibt.</p>
+    <h2>Was diese Seite anders macht</h2>
+    <p>Sie nimmt einen Haushalt einmal auf und rechnet alle Leistungen nebeneinander: Grundsicherungsgeld nach dem Recht ab 1. Juli 2026, Wohngeld nach der Formel des Wohngeldgesetzes mit der Mietstufe Ihres Ortes, Kinderzuschlag, Kindergeld, Unterhaltsvorschuss und Elterngeld. Dann wendet sie die Vorrangregel an und nennt die Stelle für jeden Antrag. Es gibt kein Formular, keine Anmeldung und keinen Rückruf.</p>
+    <h2>Wie geprüft wird</h2>
+    <p>Grundlage sind die Gesetze auf gesetze-im-internet.de, das Bundesgesetzblatt, die Merkblätter der Familienkasse und die Bekanntmachungen der Ministerien. Die Rechenkerne laufen vor jeder Veröffentlichung gegen amtliche Rechenbeispiele und unabhängig nachgerechnete Fälle. Wie jede Zahl entsteht und wo der Rechner vereinfacht, steht unter <a href={route('method', lang)}>Rechenweg und Quellen</a>.</p>
+    <h2>Was wir nicht sind</h2>
+    <p>Kein Jobcenter, keine Wohngeldstelle, keine Familienkasse und keine Beratungsstelle. Wir entscheiden über keinen Antrag und geben keine Rechtsberatung. Verbindlich ist allein der Bescheid der zuständigen Stelle. Kostenlose Beratung im Einzelfall bieten die Sozialberatungsstellen der Wohlfahrtsverbände, die Verbraucherzentralen und die Jobcenter selbst.</p>
+    <h2>Finanzierung und Ihre Daten</h2>
+    <p>Der Rechner ist kostenlos. Einkommen, Miete und das Alter Ihrer Kinder, die Sie eingeben, bleiben in Ihrem Browser. Falls die Seite Werbung zeigt, dann nie über einem Rechner und nie im Ergebnis.</p>
+    <h2>Kontakt</h2>
+    <p>Ein Betrag stimmt nicht, Ihr Bescheid weicht deutlich ab, eine Leistung fehlt? Schreiben Sie an <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Siehe auch die <a href={route('editorial', lang)}>Redaktionsgrundsätze</a> und das <a href={route('terms', lang)}>Impressum</a>.</p>
+    <p class="text-sm text-navy-600">Rechtsstand {YEAR}, geprüft am <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, LANG_TAGS[lang])}</time>.</p>
+  </div>
+</PageLayout>

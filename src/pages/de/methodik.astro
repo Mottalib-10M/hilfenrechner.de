@@ -1,0 +1,90 @@
+---
+/** Rechenweg und Quellen (Vertrauensseite, RECETTE §8.2): jede Leistung, die Vereinfachungen, die Tests, die Grenzen, alle Quellen. */
+import PageLayout from '../../layouts/PageLayout.astro';
+import { route } from '../../i18n/routes';
+import { PAP } from '../../lib/engine/lohnsteuer';
+import { helpers } from '../../lib/helpers';
+import { breadcrumbSchema, webPageSchema } from '../../lib/seo';
+import { LAST_UPDATED, CONTACT_EMAIL, REVIEW_CYCLE_MONTHS } from '../../data/site-config';
+import LST from '../../../tests/fixtures/lst2026-bmf.json';
+import SON from '../../../tests/fixtures/sonst2026-bmf.json';
+const lang = 'de';
+const h = helpers(true);
+const { P, m, m2, pc, date, src, VG } = h;
+const title = 'Sozialleistungen Rechenweg 2026: Formeln, Quellen, Grenzen';
+const description = 'Sozialleistungen Rechenweg 2026: wie der Rechner Grundsicherungsgeld, Wohngeld, Kinderzuschlag, Elterngeld und Vorschuss schätzt, mit Tests und Quellen.';
+const h1 = 'Rechenweg und Quellen';
+const path = route('method', lang);
+const sources = Object.values(P.sources) as Array<{ url: string; label: { de: string } }>;
+const R = P.regelbedarf, F = P.gsg.freibetrag, W = P.wohngeld, K = P.kiz, E = P.elterngeld, U = P.uvg, MU = P.mutterschaft;
+const fbRows = (F.stufen as Array<[number, number | null, number]>).map(([von, bis, s]) => [`über ${m(von)} bis ${bis == null ? `${m(F.obenOhne)} (mit Kind ${m(F.obenKind)})` : m(bis)}`, pc(s)]);
+const rbsRows = [['1', 'Alleinstehende und Alleinerziehende', m(R.rbs1)], ['2', 'Partner in der Bedarfsgemeinschaft, je Person', m(R.rbs2)], ['3', 'Erwachsene unter 25 im Haushalt der Eltern', m(R.rbs3)], ['4', 'Jugendliche ab dem 14. bis zum 18. Geburtstag', m(R.rbs4)], ['5', 'Kinder ab dem 6. bis zum 14. Geburtstag', m(R.rbs5)], ['6', 'Kinder bis zum 6. Geburtstag', m(R.rbs6)]];
+const wa = K.wohnanteil as { allein: number[]; paar: number[] };
+const waRows = wa.allein.map((x, i) => [i === 4 ? '5 und mehr' : String(i + 1), `${x} %`, `${wa.paar[i]} %`]);
+const uvgRows = (U.betraege as number[]).map((b, i) => [['0 bis 5 Jahre', '6 bis 11 Jahre', '12 bis 17 Jahre'][i], m((U.mindestunterhalt as number[])[i]), m(P.kindergeld.betrag), m(b)]);
+---
+<PageLayout title={title} description={description} lang={lang} jsonLd={[webPageSchema({ name: h1, description, path, lang }), breadcrumbSchema([{ name: 'Start', path: route('home', lang) }, { name: h1, path }])]} breadcrumbs={[{ label: h1 }]}>
+  <header class="mb-6"><h1 class="text-3xl font-bold text-navy-900 md:text-4xl">{h1}</h1></header>
+  <div class="prose prose-slate max-w-none">
+    <p>Jede Zahl der Rechner kommt aus einem Gesetz, einer Verordnung oder einer amtlichen Bekanntmachung, die unten mit Fundstelle steht. Gerechnet wird in Ihrem Browser; nichts von dem, was Sie eingeben, geht an einen Server. Stichtag aller Angaben: {date(h.TODAY)}. Die Rechner schätzen. Über jede Leistung entscheidet die zuständige Stelle nach Ihren Nachweisen, und diese Seite sagt offen, wo der Rechner vereinfacht.</p>
+
+    <h2>Nettolohn als Ausgangspunkt</h2>
+    <p>Alle bedarfsabhängigen Leistungen rechnen mit dem Netto. Der Rechner leitet es aus dem Bruttolohn ab: Lohnsteuer und Solidaritätszuschlag nach dem <Fragment set:html={src('pap2026', 'Programmablaufplan 2026')} /> des Bundesfinanzministeriums (Grundfreibetrag {m(PAP.GFB)}), Arbeitnehmeranteile zur Sozialversicherung 2026 mit dem durchschnittlichen Zusatzbeitrag von {pc(P.sv.zusatzDurchschnitt / 100)}. Bis {m2(P.sv.geringfuegig)} im Monat gilt der Minijob ohne Lohnsteuer, darüber bis {m(P.sv.uebergangBis)} der Übergangsbereich mit verminderten Beiträgen. Steuerklasse: allein I, alleinerziehend II, Paar mit einem Verdienst III, mit zwei Verdiensten IV/IV. <strong>Kirchensteuer wird nicht abgezogen</strong>; wer sie zahlt, hat einige Euro weniger Netto und meist etwas mehr Leistung.</p>
+
+    <h2>Grundsicherungsgeld (SGB II ab 1. Juli 2026)</h2>
+    <p>Rechtsgrundlage ist das SGB II in der Fassung des <Fragment set:html={src('bgbl_2026_107', `Gesetzes vom 16. April 2026, ${P.reform.bgbl}`)} />, in Kraft seit {date(P.reform.inkraft)}. Der Bedarf ist die Summe der Regelbedarfe aller Personen, des Mehrbedarfs für Alleinerziehende und der Kosten für Unterkunft und Heizung. Die Regelbedarfe stehen in der <Fragment set:html={src('rbsfv_2026', 'Regelbedarfsstufen-Fortschreibungsverordnung 2026')} />:</p>
+  </div>
+  <Fragment set:html={h.table(['Stufe', 'Wer', 'Monat'], rbsRows, `Regelbedarfe seit ${date(R.from)}`, ['l', 'l', 'r'])} />
+  <div class="prose prose-slate max-w-none">
+    <p>Mehrbedarf für Alleinerziehende (<Fragment set:html={src('sgb2_21', '§ 21 Abs. 3 SGB II')} />): {pc(P.gsg.mehrbedarfAE.hoch)} des Regelbedarfs mit einem Kind unter 7 oder zwei oder drei Kindern unter 16, sonst {pc(P.gsg.mehrbedarfAE.jeKind)} je Kind, höchstens {pc(P.gsg.mehrbedarfAE.max)}. Miete und Heizung werden nach Köpfen auf die Personen verteilt. Vom Nettolohn bleiben nach <Fragment set:html={src('sgb2_11b', '§ 11b SGB II')} /> {m(F.grund)} und dann gestaffelte Anteile des Bruttos frei:</p>
+  </div>
+  <Fragment set:html={h.table(['Bruttolohn im Monat', 'bleibt frei'], fbRows, `Grundfreibetrag ${m(F.grund)} vorab`, ['l', 'r'])} />
+  <div class="prose prose-slate max-w-none">
+    <p>Kindergeld, Unterhalt, Unterhaltsvorschuss und Kinderzuschlag sind Einkommen des Kindes, aber nur bis zu seinem eigenen Bedarf; ein Rest Kindergeld geht an den Elternteil. Elterngeld zählt als Einkommen; frei bleiben bis zu {m(E.freibetragSgb2)}, wenn vor der Geburt Erwerbseinkommen bestand, was der Rechner bei einem Elterngeld über dem Mindestbetrag annimmt. Wer Grundsicherungsgeld bekommt, erhält für jedes Kind zusätzlich den Sofortzuschlag von {m(P.gsg.sofortzuschlag)} (<Fragment set:html={src('sgb2_72', '§ 72 SGB II')} />); er steht im Ergebnis als eigene Zeile.</p>
+    <p><strong>Vereinfachungen:</strong> Die Miete zählt in tatsächlicher Höhe, weil jede Kommune ihre eigene Angemessenheitsgrenze hat; liegt Ihre Miete darüber, zahlt das Jobcenter nach dem ersten Jahr nur den angemessenen Teil und schon im ersten Jahr höchstens das {h.dec(P.kdu.deckelFaktor, 1)}-Fache. Das Vermögen prüft der Rechner nicht. Die Pauschale für private Versicherungen ist nicht abgezogen, weil wir ihre Fassung nach der Reform nicht an einer amtlichen Quelle prüfen konnten; Ihr Anspruch kann dadurch etwas höher liegen. Mehrbedarfe für Schwangerschaft, Behinderung, Ernährung und Warmwasser rechnet nur der Mehrbedarfsrechner, nicht der Haushaltsrechner.</p>
+
+    <h2>Wohngeld</h2>
+    <p>Formel nach <Fragment set:html={src('wogg_19', '§ 19 WoGG')} />: Wohngeld = 1,15 × (M − (a + b × M + c × Y) × Y), mit den Koeffizienten a, b und c für die Zahl der Haushaltsmitglieder aus <Fragment set:html={src('wogg_anl2', 'Anlage 2')} />, gerundet auf volle Euro. M ist die Bruttokaltmiete bis zum Höchstbetrag nach Mietstufe (<Fragment set:html={src('wogg_anl1', 'Anlage 1')} />, Mietstufen nach der <Fragment set:html={src('wogv_anlage', 'Wohngeldverordnung')} />) zuzüglich Klimakomponente und Heizkostenentlastung nach <Fragment set:html={src('wogg_12', '§ 12 WoGG')} />; die tatsächlichen Heizkosten zählen nicht. Y ist das monatliche Gesamteinkommen: Jahresbrutto je Person minus Werbungskosten, je {pc(W.abzugSatz)} Abzug für Steuern, Kranken- und Pflegeversicherung und Rentenversicherung (<Fragment set:html={src('wogg_16', '§ 16')} />), minus Freibeträge (<Fragment set:html={src('wogg_17', '§ 17')} />), geteilt durch 12. Unter {m(W.minimum)} wird nichts gezahlt.</p>
+    <p><strong>Auslegung:</strong> Als Werbungskosten zieht der Rechner den Arbeitnehmer-Pauschbetrag von {m(W.werbungskosten)} im Jahr ab (<Fragment set:html={src('estg_9a', '§ 9a EStG')} />). Das Wohngeldgesetz verweist auf das Einkommensteuerrecht; ob jede Wohngeldstelle so rechnet, haben wir nicht amtlich bestätigt gefunden. Kindergeld zählt beim Wohngeld nicht als Einkommen, Unterhalt und Unterhaltsvorschuss schon. Unsere Formel trifft vier unabhängig nachgerechnete Kontrollfälle auf den Euro.</p>
+
+    <h2>Kinderzuschlag</h2>
+    <p>Nach <Fragment set:html={src('bkgg_6a', '§ 6a BKGG')} /> höchstens {m(K.hoechst)} je Kind. Davon gehen {pc(K.anrechnungKind)} des Einkommens des Kindes ohne Kindergeld ab (Unterhalt, Unterhaltsvorschuss), dann {pc(K.anrechnungEltern)} des Erwerbseinkommens der Eltern, soweit es ihren eigenen Bedarf übersteigt. Mindesteinkommen brutto: {m(K.mindestPaar)} für Paare, {m(K.mindestAllein)} für Alleinerziehende. Den Bedarf der Eltern bildet der Rechner aus ihren Regelbedarfen, dem Mehrbedarf und ihrem Anteil an Miete und Heizung. Diesen Anteil nimmt er aus der Tabelle im <Fragment set:html={src('ba_kiz_merkblatt', 'Merkblatt Kinderzuschlag der Familienkasse')} />, die auf dem Existenzminimumbericht beruht:</p>
+  </div>
+  <Fragment set:html={h.table(['Kinder', 'Anteil Alleinerziehende', 'Anteil Paar'], waRows, 'Wohnkostenanteil der Eltern', ['l', 'r', 'r'])} />
+  <div class="prose prose-slate max-w-none">
+    <p>Die beiden Rechenbeispiele des Merkblatts sind automatische Tests und werden auf den Euro getroffen. Ob der Kinderzuschlag tatsächlich besteht, entscheidet erst der Vergleich mit dem Grundsicherungsgeld (unten).</p>
+
+    <h2>Kindergeld und Unterhaltsvorschuss</h2>
+    <p>Kindergeld: {m(P.kindergeld.betrag)} je Kind seit {date(P.kindergeld.from)} (<Fragment set:html={src('estg_66', '§ 66 EStG')} />). Den Unterhaltsvorschuss <strong>leiten wir selbst ab</strong>: Mindestunterhalt der Altersstufe nach der <Fragment set:html={src('bgbl_2024_359', 'Mindestunterhaltsverordnung')} /> minus das volle Kindergeld für ein erstes Kind (<Fragment set:html={src('uvg_2', '§ 2 UVG')} />).</p>
+  </div>
+  <Fragment set:html={h.table(['Alter', 'Mindestunterhalt', 'minus Kindergeld', 'Vorschuss'], uvgRows, `Unterhaltsvorschuss seit ${date(U.from)}`, ['l', 'r', 'r', 'r'])} />
+  <div class="prose prose-slate max-w-none">
+    <p>Zahlungen des anderen Elternteils mindern den Vorschuss. Für Kinder von 12 bis 17 Jahren gilt die Bedingung des <Fragment set:html={src('uvg_1', '§ 1 Abs. 1a UVG')} />: kein Grundsicherungsgeld für das Kind oder mindestens {m(U.mindesteinkommen12)} brutto beim alleinerziehenden Elternteil.</p>
+
+    <h2>Elterngeld und Mutterschaftsgeld</h2>
+    <p>Elterngeld-Netto nach <Fragment set:html={src('beeg_2e', '§ 2e')} /> und <Fragment set:html={src('beeg_2f', '§ 2f BEEG')} />: Monatsbrutto minus ein Zwölftel von {m(E.anp)} Arbeitnehmer-Pauschbetrag, minus Lohnsteuer und Soli nach Programmablaufplan, minus Pauschalen von {pc(E.pauschKvPv)}, {pc(E.pauschRv)} und {pc(E.pauschAv)} für die Sozialversicherung. Ersatzrate {pc(E.rate)}, bei kleinem Einkommen höher, bei hohem sinkend bis {pc(E.rateMin)}; mindestens {m(E.mindest)}, höchstens {m(E.hoechst)}. <strong>Wichtig:</strong> Maßgeblich ist der Programmablaufplan des Kalenderjahres vor der Geburt. Der Rechner nutzt den von 2026, rechnet also genau für Geburten ab dem 1. Januar 2027; für Geburten 2026 gilt der Plan von 2025, und das Ergebnis kann um wenige Euro abweichen.</p>
+    <p>Mutterschaftsgeld: höchstens {m(MU.kasseProTag)} je Kalendertag von der Krankenkasse (<Fragment set:html={src('sgb5_24i', '§ 24i SGB V')} />), den Rest bis zum durchschnittlichen Nettolohn zahlt der Arbeitgeber (<Fragment set:html={src('muschg_20', '§ 20 MuSchG')} />); privat oder familienversichert einmalig höchstens {m(MU.bas)} vom Bundesamt für Soziale Sicherung.</p>
+
+    <h2>Der Vergleich: welche Leistung gilt</h2>
+    <p>Der Haushaltsrechner rechnet zuerst Kindergeld und Unterhaltsvorschuss, dann das Grundsicherungsgeld ohne andere Leistungen, dann Wohngeld und Kinderzuschlag, und schließlich das Grundsicherungsgeld noch einmal mit Wohngeld und Kinderzuschlag als Einkommen. Bleibt dabei kein Bedarf offen, gehen Wohngeld und Kinderzuschlag vor (<Fragment set:html={src('sgb2_12a', '§ 12a SGB II')} />). Fehlen höchstens {m(K.luecke)} und hat der Haushalt Erwerbseinkommen, besteht der Kinderzuschlag trotzdem, und der Haushalt kann wählen (§ 6a Abs. 1a BKGG). Sonst ist das Jobcenter zuständig. Zuständige Stellen: {Object.values(VG.STELLE).filter((x, i, a) => a.indexOf(x) === i).join(', ')}.</p>
+
+    <h2>Tests vor jeder Veröffentlichung</h2>
+    <p>Vor jedem Build laufen automatische Tests: die Rechenbeispiele des Kinderzuschlag-Merkblatts, die Höchstbeträge der Wohngeld-Anlage 1, vier Wohngeld-Kontrollfälle, die Freibeträge des § 11b, die Mehrbedarfe für Alleinerziehende, Ersatzrate und Grenzen des Elterngeldes, die Beträge des Unterhaltsvorschusses, die Schutzfristen und drei Vergleichsfälle. Die Lohnsteuer läuft gegen {LST.length} Monats- und Jahresfälle und {SON.length} Fälle für sonstige Bezüge, die die <Fragment set:html={src('bmf_rechner', 'Schnittstelle des BMF-Rechners')} /> am 20. Oktober 2026 geliefert hat, auf den Cent. Ein abweichender Wert stoppt die Veröffentlichung.</p>
+
+    <h2>Was die Rechner nicht wissen</h2>
+    <ul>
+      <li>Vermögen, Erbschaften und Schenkungen;</li>
+      <li>die Angemessenheitsgrenze für die Miete in Ihrer Kommune;</li>
+      <li>Mehrbedarfe außer dem für Alleinerziehende im Haushaltsrechner;</li>
+      <li>Selbständige, Studierende, Auszubildende, Rentner mit Grundsicherung im Alter und Fragen des Aufenthaltsrechts;</li>
+      <li>Pflichtverletzungen und Leistungsminderungen.</li>
+    </ul>
+    <p>Beträge, die erst beschlossen werden sollen, rechnen wir nicht: die Regelbedarfe 2027, das Kindergeld 2027 und 2028 aus dem Regierungsentwurf und die Wohngeldreform aus dem Gesetzentwurf (BT-Drs. {W.entwurf2027.drucksache}). Sie stehen auf den Seiten als „à venir“ mit Datum.</p>
+
+    <h2>Rhythmus und Fehler</h2>
+    <p>Vollständige Durchsicht mindestens alle {REVIEW_CYCLE_MONTHS} Monate, dazu nach jeder neuen Regelbedarfsverordnung, jeder Wohngeldanpassung und jeder Änderung des Kindergeldes. Fehler melden Sie an <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>; siehe auch die <a href={route('editorial', lang)}>Redaktionsgrundsätze</a>. Fassung: {date(LAST_UPDATED)}.</p>
+
+    <h2>Alle Quellen ({sources.length})</h2>
+    <ul>{sources.map((s) => <li><a href={s.url} rel="nofollow noopener" target="_blank">{s.label.de}</a></li>)}</ul>
+  </div>
+</PageLayout>

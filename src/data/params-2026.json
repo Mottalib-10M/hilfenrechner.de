@@ -1,0 +1,1450 @@
+{
+ "_lisezmoi": "Tous les paramètres légaux du site. Chaque valeur relue sur la source citée le 2026-10-20 (RECETTE §4, §17.4). Jamais en dur dans une page.",
+ "year": 2026,
+ "today": "2026-10-20",
+ "retrieved_at": "2026-10-20",
+ "sources": {
+  "pap2026": {
+   "label": {
+    "de": "BMF: Programmablaufplan für die maschinelle Berechnung der Lohnsteuer 2026 (XML)"
+   },
+   "url": "https://www.bmf-steuerrechner.de/javax.faces.resource/daten/xmls/Lohnsteuer2026.xml.xhtml",
+   "retrieved_at": "2026-10-20"
+  },
+  "bmf_rechner": {
+   "label": {
+    "de": "BMF: Lohn- und Einkommensteuerrechner"
+   },
+   "url": "https://www.bmf-steuerrechner.de/",
+   "retrieved_at": "2026-10-20"
+  },
+  "banz_zb2026": {
+   "label": {
+    "de": "BMG: durchschnittlicher Zusatzbeitragssatz 2026, BAnz AT 10.11.2025 B7"
+   },
+   "url": "https://www.bundesanzeiger.de/pub/publication/oUJYVk8GYRXybnb9Y4h/content/oUJYVk8GYRXybnb9Y4h/BAnz%20AT%2010.11.2025%20B7.pdf",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb11_55": {
+   "label": {
+    "de": "§ 55 SGB XI: Beitragssatz der Pflegeversicherung, Zuschlag und Abschläge"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_11/__55.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "bmas_rg2026": {
+   "label": {
+    "de": "BMAS: Sozialversicherungs-Rechengrößenverordnung 2026"
+   },
+   "url": "https://www.bmas.de/DE/Service/Gesetze-und-Gesetzesvorhaben/sozialversicherungs-rechengroessenverordnung-2026.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "bgbl_2026_107": {
+   "label": {
+    "de": "BGBl. 2026 I Nr. 107: Dreizehntes Gesetz zur Änderung des SGB II vom 16. April 2026"
+   },
+   "url": "https://www.recht.bund.de/bgbl/1/2026/107/regelungstext.pdf?__blob=publicationFile&v=1",
+   "retrieved_at": "2026-10-20"
+  },
+  "rbsfv_2026": {
+   "label": {
+    "de": "Regelbedarfsstufen-Fortschreibungsverordnung 2026 (BGBl. 2025 I Nr. 243)"
+   },
+   "url": "https://www.gesetze-im-internet.de/rbsfv_2026/BJNR0F30B0025.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb12_anlage": {
+   "label": {
+    "de": "Anlage zu § 28 SGB XII: Regelbedarfsstufen seit 2011"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_12/anlage.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_12": {
+   "label": {
+    "de": "§ 12 SGB II: zu berücksichtigendes Vermögen"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__12.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_12a": {
+   "label": {
+    "de": "§ 12a SGB II: vorrangige Leistungen"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__12a.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_20": {
+   "label": {
+    "de": "§ 20 SGB II: Regelbedarf zur Sicherung des Lebensunterhalts"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__20.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb4_20": {
+   "label": {
+    "de": "§ 20 SGB IV: Übergangsbereich und beitragspflichtige Einnahme"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_4/__20.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb4_8": {
+   "label": {
+    "de": "§ 8 SGB IV: geringfügige Beschäftigung und Geringfügigkeitsgrenze"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_4/__8.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "ba_weisung_202604002": {
+   "label": {
+    "de": "Bundesagentur für Arbeit, Weisung 202604002 vom 9. April 2026: Mindestlohn 13,90 €, Geringfügigkeitsgrenze 603 €, Übergangsbereich bis 2.000 €"
+   },
+   "url": "https://www.arbeitsagentur.de/datei/weisung-202604002_ba056519.pdf",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_11b": {
+   "label": {
+    "de": "§ 11b SGB II: Absetzbeträge und Freibetrag bei Erwerbstätigkeit"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__11b.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_21": {
+   "label": {
+    "de": "§ 21 SGB II: Mehrbedarfe"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__21.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_22": {
+   "label": {
+    "de": "§ 22 SGB II: Bedarfe für Unterkunft und Heizung"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__22.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_11": {
+   "label": {
+    "de": "§ 11 SGB II: zu berücksichtigendes Einkommen"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__11.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_28": {
+   "label": {
+    "de": "§ 28 SGB II: Bedarfe für Bildung und Teilhabe"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__28.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "beeg_10": {
+   "label": {
+    "de": "§ 10 BEEG: Verhältnis des Elterngeldes zu anderen Sozialleistungen"
+   },
+   "url": "https://www.gesetze-im-internet.de/beeg/__10.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "wogg_19": {
+   "label": {
+    "de": "§ 19 WoGG: Höhe des Wohngeldes"
+   },
+   "url": "https://www.gesetze-im-internet.de/wogg/__19.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "wogg_12": {
+   "label": {
+    "de": "§ 12 WoGG: Höchstbeträge, Heizkostenentlastung und Klimakomponente"
+   },
+   "url": "https://www.gesetze-im-internet.de/wogg/__12.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "wogg_anl1": {
+   "label": {
+    "de": "Anlage 1 zum WoGG: Höchstbeträge für Miete und Belastung"
+   },
+   "url": "https://www.gesetze-im-internet.de/wogg/anlage_1.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "wogg_anl2": {
+   "label": {
+    "de": "Anlage 2 zum WoGG: Werte a, b und c der Wohngeldformel"
+   },
+   "url": "https://www.gesetze-im-internet.de/wogg/anlage_2.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "wogg_anl3": {
+   "label": {
+    "de": "Anlage 3 zum WoGG: Rechenschritte und Rundungen"
+   },
+   "url": "https://www.gesetze-im-internet.de/wogg/anlage_3.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "wogg_16": {
+   "label": {
+    "de": "§ 16 WoGG: Abzugsbeträge für Steuern und Sozialversicherungsbeiträge"
+   },
+   "url": "https://www.gesetze-im-internet.de/wogg/__16.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "wogg_17": {
+   "label": {
+    "de": "§ 17 WoGG: Freibeträge"
+   },
+   "url": "https://www.gesetze-im-internet.de/wogg/__17.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "wogg_14": {
+   "label": {
+    "de": "§ 14 WoGG: Jahreseinkommen"
+   },
+   "url": "https://www.gesetze-im-internet.de/wogg/__14.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "wogg_21": {
+   "label": {
+    "de": "§ 21 WoGG: Ausschluss bei weniger als 10 Euro"
+   },
+   "url": "https://www.gesetze-im-internet.de/wogg/__21.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "wogv_anlage": {
+   "label": {
+    "de": "Anlage zu § 1 Abs. 3 WoGV: Mietenstufen der Gemeinden"
+   },
+   "url": "https://www.gesetze-im-internet.de/wogv/anlage.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "bgbl_2024_314": {
+   "label": {
+    "de": "Zweite Verordnung zur Fortschreibung des Wohngeldes vom 21. Oktober 2024, BGBl. 2024 I Nr. 314"
+   },
+   "url": "https://www.recht.bund.de/bgbl/1/2024/314/VO.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "estg_9a": {
+   "label": {
+    "de": "§ 9a EStG: Arbeitnehmer-Pauschbetrag"
+   },
+   "url": "https://www.gesetze-im-internet.de/estg/__9a.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "bkgg_6a": {
+   "label": {
+    "de": "§ 6a BKGG: Kinderzuschlag"
+   },
+   "url": "https://www.gesetze-im-internet.de/bkgg_1996/__6a.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "ba_kiz_merkblatt": {
+   "label": {
+    "de": "Familienkasse: Merkblatt Kinderzuschlag (KiZ 2), Stand Juli 2026"
+   },
+   "url": "https://www.arbeitsagentur.de/datei/kiz2-merkblattkinderzuschlag_ba034485.pdf",
+   "retrieved_at": "2026-10-20"
+  },
+  "familienportal_kiz": {
+   "label": {
+    "de": "Familienportal des Bundes: Kinderzuschlag"
+   },
+   "url": "https://familienportal.de/familienportal/familienleistungen/kinderzuschlag",
+   "retrieved_at": "2026-10-20"
+  },
+  "estg_66": {
+   "label": {
+    "de": "§ 66 EStG: Höhe des Kindergeldes"
+   },
+   "url": "https://www.gesetze-im-internet.de/estg/__66.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "bkgg_6": {
+   "label": {
+    "de": "§ 6 BKGG: Höhe des Kindergeldes"
+   },
+   "url": "https://www.gesetze-im-internet.de/bkgg_1996/__6.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "estg_32": {
+   "label": {
+    "de": "§ 32 EStG: Kinder, Freibeträge für Kinder"
+   },
+   "url": "https://www.gesetze-im-internet.de/estg/__32.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "ba_kg_merkblatt": {
+   "label": {
+    "de": "Familienkasse: Merkblatt Kindergeld 2026"
+   },
+   "url": "https://www.arbeitsagentur.de/datei/merkblatt-kindergeld-kg2-fuer-2026_ba057307.pdf",
+   "retrieved_at": "2026-10-20"
+  },
+  "btd_21_8235": {
+   "label": {
+    "de": "Gesetzentwurf der Bundesregierung, BT-Drucksache 21/8235 (Kindergeld 2027 und 2028, nicht beschlossen)"
+   },
+   "url": "https://dserver.bundestag.de/btd/21/082/2108235.pdf",
+   "retrieved_at": "2026-10-20"
+  },
+  "uvg_1": {
+   "label": {
+    "de": "§ 1 UVG: Berechtigte"
+   },
+   "url": "https://www.gesetze-im-internet.de/uhvorschg/__1.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "uvg_2": {
+   "label": {
+    "de": "§ 2 UVG: Umfang der Unterhaltsleistung"
+   },
+   "url": "https://www.gesetze-im-internet.de/uhvorschg/__2.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "bgbl_2024_359": {
+   "label": {
+    "de": "Siebte Verordnung zur Änderung der Mindestunterhaltsverordnung, BGBl. 2024 I Nr. 359"
+   },
+   "url": "https://www.recht.bund.de/bgbl/1/2024/359/VO.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb5_24i": {
+   "label": {
+    "de": "§ 24i SGB V: Mutterschaftsgeld"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_5/__24i.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "muschg_19": {
+   "label": {
+    "de": "§ 19 MuSchG: Mutterschaftsgeld"
+   },
+   "url": "https://www.gesetze-im-internet.de/muschg_2018/__19.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "muschg_20": {
+   "label": {
+    "de": "§ 20 MuSchG: Zuschuss zum Mutterschaftsgeld"
+   },
+   "url": "https://www.gesetze-im-internet.de/muschg_2018/__20.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "muschg_3": {
+   "label": {
+    "de": "§ 3 MuSchG: Schutzfristen vor und nach der Entbindung"
+   },
+   "url": "https://www.gesetze-im-internet.de/muschg_2018/__3.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "bgbl_2025_59": {
+   "label": {
+    "de": "Gesetz zur Anpassung des Mutterschutzgesetzes (Schutzfristen nach Fehlgeburt), BGBl. 2025 I Nr. 59"
+   },
+   "url": "https://www.recht.bund.de/bgbl/1/2025/59/VO.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "beeg_2": {
+   "label": {
+    "de": "§ 2 BEEG: Höhe des Elterngeldes"
+   },
+   "url": "https://www.gesetze-im-internet.de/beeg/__2.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "beeg_2a": {
+   "label": {
+    "de": "§ 2a BEEG: Geschwisterbonus und Mehrlingszuschlag"
+   },
+   "url": "https://www.gesetze-im-internet.de/beeg/__2a.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "beeg_2e": {
+   "label": {
+    "de": "§ 2e BEEG: Abzüge für Steuern"
+   },
+   "url": "https://www.gesetze-im-internet.de/beeg/__2e.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "beeg_2f": {
+   "label": {
+    "de": "§ 2f BEEG: Abzüge für Sozialabgaben"
+   },
+   "url": "https://www.gesetze-im-internet.de/beeg/__2f.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "beeg_1": {
+   "label": {
+    "de": "§ 1 BEEG: Berechtigte und Einkommensgrenze"
+   },
+   "url": "https://www.gesetze-im-internet.de/beeg/__1.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "beeg_4": {
+   "label": {
+    "de": "§ 4 BEEG: Art und Dauer des Bezugs"
+   },
+   "url": "https://www.gesetze-im-internet.de/beeg/__4.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "beeg_4a": {
+   "label": {
+    "de": "§ 4a BEEG: Basiselterngeld und Elterngeld Plus"
+   },
+   "url": "https://www.gesetze-im-internet.de/beeg/__4a.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "beeg_4b": {
+   "label": {
+    "de": "§ 4b BEEG: Partnerschaftsbonus"
+   },
+   "url": "https://www.gesetze-im-internet.de/beeg/__4b.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_31": {
+   "label": {
+    "de": "§ 31 SGB II: Pflichtverletzungen"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__31.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_31a": {
+   "label": {
+    "de": "§ 31a SGB II: Rechtsfolgen bei Pflichtverletzungen"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__31a.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_31b": {
+   "label": {
+    "de": "§ 31b SGB II: Beginn und Dauer der Minderung"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__31b.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_32": {
+   "label": {
+    "de": "§ 32 SGB II: Meldeversäumnisse"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__32.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_7b": {
+   "label": {
+    "de": "§ 7b SGB II: Erreichbarkeit"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__7b.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_37": {
+   "label": {
+    "de": "§ 37 SGB II: Antragserfordernis"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__37.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_41": {
+   "label": {
+    "de": "§ 41 SGB II: Berechnung der Leistungen und Bewilligungszeitraum"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__41.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_65a": {
+   "label": {
+    "de": "§ 65a SGB II: Übergangsregelung zum Dreizehnten Änderungsgesetz"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__65a.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_10": {
+   "label": {
+    "de": "§ 10 SGB II: Zumutbarkeit"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__10.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_15": {
+   "label": {
+    "de": "§ 15 SGB II: Potenzialanalyse und Kooperationsplan"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__15.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_9": {
+   "label": {
+    "de": "§ 9 SGB II: Hilfebedürftigkeit"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__9.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_7": {
+   "label": {
+    "de": "§ 7 SGB II: Leistungsberechtigte"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__7.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_24": {
+   "label": {
+    "de": "§ 24 SGB II: Abweichende Erbringung von Leistungen"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__24.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "bkgg_5": {
+   "label": {
+    "de": "§ 5 BKGG: Beginn und Ende des Anspruchs"
+   },
+   "url": "https://www.gesetze-im-internet.de/bkgg_1996/__5.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "wogg_25": {
+   "label": {
+    "de": "§ 25 WoGG: Bewilligungszeitraum"
+   },
+   "url": "https://www.gesetze-im-internet.de/wogg/__25.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "uvg_4": {
+   "label": {
+    "de": "§ 4 UVG: Beginn und beschränkte Rückwirkung"
+   },
+   "url": "https://www.gesetze-im-internet.de/uhvorschg/__4.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "wogg_7": {
+   "label": {
+    "de": "§ 7 WoGG: Ausschluss vom Wohngeld"
+   },
+   "url": "https://www.gesetze-im-internet.de/wogg/__7.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "btd_21_8284": {
+   "label": {
+    "de": "Gesetzentwurf der Bundesregierung zur Vereinfachung und Fortentwicklung des Wohngeldgesetzes, BT-Drucksache 21/8284 (nicht beschlossen)"
+   },
+   "url": "https://dserver.bundestag.de/btd/21/082/2108284.pdf",
+   "retrieved_at": "2026-10-20"
+  },
+  "wogg_17a": {
+   "label": {
+    "de": "§ 17a WoGG: Freibetrag für zu berücksichtigende Grundrentenzeiten"
+   },
+   "url": "https://www.gesetze-im-internet.de/wogg/__17a.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "wogg_22": {
+   "label": {
+    "de": "§ 22 WoGG: Wohngeldantrag"
+   },
+   "url": "https://www.gesetze-im-internet.de/wogg/__22.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "wogg_27": {
+   "label": {
+    "de": "§ 27 WoGG: Änderung des Wohngeldes"
+   },
+   "url": "https://www.gesetze-im-internet.de/wogg/__27.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "bkgg_6b": {
+   "label": {
+    "de": "§ 6b BKGG: Leistungen für Bildung und Teilhabe"
+   },
+   "url": "https://www.gesetze-im-internet.de/bkgg_1996/__6b.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "beeg_7": {
+   "label": {
+    "de": "§ 7 BEEG: Antragstellung"
+   },
+   "url": "https://www.gesetze-im-internet.de/beeg/__7.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "beeg_3": {
+   "label": {
+    "de": "§ 3 BEEG: Anrechnung von anderen Einnahmen"
+   },
+   "url": "https://www.gesetze-im-internet.de/beeg/__3.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "uvg_7": {
+   "label": {
+    "de": "§ 7 UVG: Übergang von Ansprüchen des Berechtigten"
+   },
+   "url": "https://www.gesetze-im-internet.de/uhvorschg/__7.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb12_41": {
+   "label": {
+    "de": "§ 41 SGB XII: Grundsicherung im Alter und bei Erwerbsminderung"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_12/__41.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_72": {
+   "label": {
+    "de": "§ 72 SGB II: Sofortzuschlag"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__72.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_42": {
+   "label": {
+    "de": "§ 42 SGB II: Fälligkeit und Auszahlung"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__42.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb12_28a": {
+   "label": {
+    "de": "§ 28a SGB XII: Fortschreibung der Regelbedarfsstufen"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_12/__28a.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_42a": {
+   "label": {
+    "de": "§ 42a SGB II: Darlehen"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__42a.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_11a": {
+   "label": {
+    "de": "§ 11a SGB II: Nicht zu berücksichtigendes Einkommen"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__11a.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "estg_64": {
+   "label": {
+    "de": "§ 64 EStG: Zusammentreffen mehrerer Ansprüche"
+   },
+   "url": "https://www.gesetze-im-internet.de/estg/__64.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb2_29": {
+   "label": {
+    "de": "§ 29 SGB II: Erbringung der Leistungen für Bildung und Teilhabe"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_2/__29.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "beeg_4c": {
+   "label": {
+    "de": "§ 4c BEEG: Alleiniger Bezug durch einen Elternteil"
+   },
+   "url": "https://www.gesetze-im-internet.de/beeg/__4c.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "uvg_3": {
+   "label": {
+    "de": "§ 3 UVG: Dauer der Unterhaltsleistung"
+   },
+   "url": "https://www.gesetze-im-internet.de/uhvorschg/__3.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "uvg_5": {
+   "label": {
+    "de": "§ 5 UVG: Ersatz- und Rückzahlungspflicht"
+   },
+   "url": "https://www.gesetze-im-internet.de/uhvorschg/__5.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "uvg_6": {
+   "label": {
+    "de": "§ 6 UVG: Auskunfts- und Anzeigepflicht"
+   },
+   "url": "https://www.gesetze-im-internet.de/uhvorschg/__6.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "uvg_9": {
+   "label": {
+    "de": "§ 9 UVG: Verfahren und Zahlungsweise"
+   },
+   "url": "https://www.gesetze-im-internet.de/uhvorschg/__9.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "sgb12_34": {
+   "label": {
+    "de": "§ 34 SGB XII: Bedarfe für Bildung und Teilhabe"
+   },
+   "url": "https://www.gesetze-im-internet.de/sgb_12/__34.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "beeg_2b": {
+   "label": {
+    "de": "§ 2b BEEG: Bemessungszeitraum"
+   },
+   "url": "https://www.gesetze-im-internet.de/beeg/__2b.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "beeg_8": {
+   "label": {
+    "de": "§ 8 BEEG: Auskunftspflicht, Nebenbestimmungen"
+   },
+   "url": "https://www.gesetze-im-internet.de/beeg/__8.html",
+   "retrieved_at": "2026-10-20"
+  },
+  "beeg_15": {
+   "label": {
+    "de": "§ 15 BEEG: Anspruch auf Elternzeit"
+   },
+   "url": "https://www.gesetze-im-internet.de/beeg/__15.html",
+   "retrieved_at": "2026-10-20"
+  }
+ },
+ "reform": {
+  "gesetz": "Dreizehntes Gesetz zur Änderung des Zweiten Buches Sozialgesetzbuch und anderer Gesetze",
+  "vom": "2026-04-16",
+  "verkuendet": "2026-04-22",
+  "bgbl": "BGBl. 2026 I Nr. 107",
+  "inkraft": "2026-07-01",
+  "inkraftSanktionArbeit": "2026-04-23",
+  "inkraft2027": "2027-08-01",
+  "inkraft2029": "2029-01-01",
+  "buergergeldBegriffBis": "2026-12-31",
+  "source": "bgbl_2026_107"
+ },
+ "regelbedarf": {
+  "from": "2026-01-01",
+  "rbs1": 563,
+  "rbs2": 506,
+  "rbs3": 451,
+  "rbs4": 471,
+  "rbs5": 390,
+  "rbs6": 357,
+  "vorjahrGleich": true,
+  "basisRate": 2.25,
+  "ergaenzRate": 1.8,
+  "schulbedarf1": 130,
+  "schulbedarf2": 65,
+  "next": {
+   "from": "2027-01-01",
+   "status": "à venir",
+   "note": "Regelbedarfsstufen-Fortschreibungsverordnung 2027 noch nicht verkündet; Haushaltsbegleitgesetz 2027 (BT-Drs. 21/7860) im Verfahren"
+  },
+  "source": "rbsfv_2026"
+ },
+ "vermoegen": {
+  "from": "2026-07-01",
+  "stufen": [
+   [
+    0,
+    29,
+    5000
+   ],
+   [
+    30,
+    39,
+    10000
+   ],
+   [
+    40,
+    49,
+    12500
+   ],
+   [
+    50,
+    200,
+    20000
+   ]
+  ],
+  "note": "bis zur Vollendung des 30. Lebensjahres 5 000; ab dem 31. Lebensjahr 10 000; ab dem 41. 12 500; ab dem 51. 20 000",
+  "altesRechtBis": "2026-06-30",
+  "source": "bgbl_2026_107",
+  "bis2026": {
+   "karenzErste": 40000,
+   "karenzWeitere": 15000,
+   "nachKarenz": 15000,
+   "note": "§ 12 SGB II in der Fassung bis 30.6.2026, weiter anwendbar auf Bewilligungszeiträume, die vorher begonnen haben (§ 65a)"
+  },
+  "wohnungQm": 130,
+  "hausQm": 140
+ },
+ "minderung": {
+  "satz": 0.3,
+  "monate": 3,
+  "source": "bgbl_2026_107"
+ },
+ "kdu": {
+  "deckelFaktor": 1.5,
+  "source": "bgbl_2026_107"
+ },
+ "sv": {
+  "year": 2026,
+  "rvAn": 0.093,
+  "avAn": 0.013,
+  "kvAllgAn": 0.07,
+  "zusatzDurchschnitt": 2.9,
+  "pvAn": 0.018,
+  "pvAnSachsen": 0.023,
+  "pvKinderlos": 0.006,
+  "pvAbschlag": 0.0025,
+  "bbgRv": 101400,
+  "bbgKv": 69750,
+  "sources": [
+   "pap2026",
+   "banz_zb2026",
+   "sgb11_55",
+   "bmas_rg2026",
+   "ba_weisung_202604002",
+   "sgb4_20"
+  ],
+  "rvGesamt": 0.186,
+  "avGesamt": 0.026,
+  "kvAllgGesamt": 0.146,
+  "pvGesamt": 0.036,
+  "minijobRvAg": 0.15,
+  "geringfuegig": 603,
+  "uebergangBis": 2000,
+  "mindestlohn": 13.9
+ },
+ "gsg": {
+  "freibetrag": {
+   "grund": 100,
+   "stufen": [
+    [
+     100,
+     520,
+     0.2
+    ],
+    [
+     520,
+     1000,
+     0.3
+    ],
+    [
+     1000,
+     null,
+     0.1
+    ]
+   ],
+   "obenOhne": 1200,
+   "obenKind": 1500,
+   "source": "sgb2_11b"
+  },
+  "mehrbedarfAE": {
+   "hoch": 0.36,
+   "jeKind": 0.12,
+   "max": 0.6,
+   "source": "sgb2_21"
+  },
+  "mehrbedarfSchwanger": 0.17,
+  "versicherungspauschale": 0,
+  "mehrbedarfBehinderung": 0.35,
+  "warmwasser": {
+   "erwachsen": 0.023,
+   "jahr15": 0.014,
+   "kind7bis14": 0.012,
+   "kind0bis6": 0.008
+  },
+  "bewilligungMonate": 12,
+  "bewilligungKurzMonate": 6,
+  "karenzMieteMonate": 12,
+  "neueKarenzNachJahren": 3,
+  "freibetragGrund": 100,
+  "freibetragGrundNachweisAb": 400,
+  "freibetragJungMinijob": true,
+  "kinderbetreuungAbLebensmonat": 14,
+  "vorrangDreiMonate": 3,
+  "sofortzuschlag": 25,
+  "vorschussMax": 100,
+  "darlehenAufrechnung": 0.05
+ },
+ "elterngeld": {
+  "freibetragSgb2": 300,
+  "rate": 0.67,
+  "rateMin": 0.65,
+  "mindest": 300,
+  "hoechst": 1800,
+  "kappungTeilzeit": 2770,
+  "anp": 1230,
+  "pauschKvPv": 0.09,
+  "pauschRv": 0.1,
+  "pauschAv": 0.02,
+  "kirchensteuer": 0.08,
+  "geschwister": 0.1,
+  "geschwisterMin": 75,
+  "mehrling": 300,
+  "einkommensgrenze": 175000,
+  "einkommensgrenzeFrom": "2025-04-01",
+  "basisMonate": 12,
+  "partnerMonate": 2,
+  "sources": [
+   "beeg_2",
+   "beeg_2a",
+   "beeg_2e",
+   "beeg_2f",
+   "beeg_1",
+   "beeg_4",
+   "beeg_4a",
+   "beeg_4b",
+   "beeg_10"
+  ],
+  "freibetragSgb2Plus": 150,
+  "plusMindest": 150,
+  "partnerschaftsbonusMonate": [
+   2,
+   4
+  ],
+  "partnerschaftsbonusStunden": [
+   24,
+   32
+  ],
+  "basisBisLebensmonat": 14,
+  "plusBisLebensmonat": 32,
+  "gleichzeitigBasisMonate": 1,
+  "einkommensgrenzeVorher": 200000,
+  "maxWochenstunden": 32,
+  "rueckwirkendMonate": 3,
+  "mindestBezugMonate": 2,
+  "geschwisterAlter": {
+   "zweiKinderUnter": 3,
+   "dreiKinderUnter": 6,
+   "anzahl": [
+    2,
+    3
+   ]
+  },
+  "fruehgeburt": {
+   "wochenVorher": [
+    6,
+    8,
+    12,
+    16
+   ],
+   "basisMonate": [
+    13,
+    14,
+    15,
+    16
+   ],
+   "source": "beeg_4"
+  },
+  "rateGrenzeUnten": 1000,
+  "rateGrenzeOben": 1200,
+  "rateSchrittEuro": 2,
+  "rateSchrittPunkte": 0.001,
+  "bemessungMonate": 12
+ },
+ "wohngeld": {
+  "from": "2025-01-01",
+  "hoechstbetrag": [
+   [
+    361,
+    408,
+    456,
+    511,
+    562,
+    615,
+    677
+   ],
+   [
+    437,
+    493,
+    551,
+    619,
+    680,
+    745,
+    820
+   ],
+   [
+    521,
+    587,
+    657,
+    737,
+    809,
+    887,
+    975
+   ],
+   [
+    608,
+    686,
+    766,
+    858,
+    946,
+    1035,
+    1139
+   ],
+   [
+    694,
+    782,
+    875,
+    982,
+    1080,
+    1183,
+    1302
+   ]
+  ],
+  "hoechstbetragMehr": [
+   82,
+   94,
+   106,
+   119,
+   129,
+   149,
+   163
+  ],
+  "heizkosten": [
+   110.4,
+   142.6,
+   170.2,
+   197.8,
+   225.4
+  ],
+  "heizkostenMehr": 27.6,
+  "klima": [
+   19.2,
+   24.8,
+   29.6,
+   34.4,
+   39.2
+  ],
+  "klimaMehr": 4.8,
+  "formel": {
+   "a": [
+    0.04,
+    0.03,
+    0.02,
+    0.01,
+    0,
+    -0.01,
+    -0.02,
+    -0.03,
+    -0.04,
+    -0.06,
+    -0.09,
+    -0.12
+   ],
+   "b": [
+    0.0004797,
+    0.0003571,
+    0.0002917,
+    0.0002163,
+    0.0001907,
+    0.0001722,
+    0.0001592,
+    0.0001583,
+    0.0001376,
+    0.0001249,
+    0.0001141,
+    0.0001107
+   ],
+   "c": [
+    4.08e-05,
+    3.04e-05,
+    2.45e-05,
+    1.76e-05,
+    1.72e-05,
+    1.66e-05,
+    1.65e-05,
+    1.65e-05,
+    1.66e-05,
+    1.66e-05,
+    1.96e-05,
+    2.21e-05
+   ]
+  },
+  "mindest": {
+   "M": [
+    54,
+    67,
+    79,
+    92,
+    103,
+    103,
+    115,
+    128,
+    140,
+    152,
+    187,
+    298
+   ],
+   "Y": [
+    396,
+    679,
+    906,
+    1132,
+    1358,
+    1585,
+    1811,
+    2037,
+    2264,
+    2490,
+    2717,
+    2943
+   ]
+  },
+  "werbungskosten": 1230,
+  "geringfuegig": 603,
+  "freibetragAlleinerziehend": 1320,
+  "freibetragKindErwerb": 1200,
+  "freibetragSchwerbehindert": 1800,
+  "minimum": 10,
+  "mietstufen": {
+   "Berlin": 4,
+   "Hamburg": 6,
+   "München": 7,
+   "Köln": 6,
+   "Frankfurt am Main": 6,
+   "Stuttgart": 6,
+   "Düsseldorf": 6,
+   "Leipzig": 2,
+   "Dortmund": 3,
+   "Essen": 3,
+   "Bremen": 4,
+   "Dresden": 3,
+   "Hannover": 5,
+   "Nürnberg": 5,
+   "Duisburg": 3,
+   "Bochum": 3,
+   "Wuppertal": 3,
+   "Bielefeld": 3,
+   "Bonn": 5,
+   "Münster": 4,
+   "Mannheim": 5,
+   "Karlsruhe": 4,
+   "Augsburg": 5,
+   "Wiesbaden": 6,
+   "Gelsenkirchen": 2,
+   "Mönchengladbach": 3,
+   "Aachen": 4,
+   "Braunschweig": 4,
+   "Kiel": 5,
+   "Chemnitz": 1,
+   "Halle (Saale)": 3,
+   "Magdeburg": 3,
+   "Freiburg im Breisgau": 6,
+   "Krefeld": 4,
+   "Mainz": 6,
+   "Lübeck": 4,
+   "Erfurt": 3,
+   "Oberhausen": 2,
+   "Rostock": 3,
+   "Kassel": 3,
+   "Potsdam": 4,
+   "Saarbrücken": 3,
+   "Regensburg": 5,
+   "Heidelberg": 5,
+   "Darmstadt": 6
+  },
+  "next": {
+   "status": "à venir",
+   "note": "Gesetzentwurf der Bundesregierung zur Vereinfachung und Fortentwicklung des Wohngeldgesetzes; nächste Fortschreibung nach § 43 WoGG zum 1. Januar 2027 nicht verkündet"
+  },
+  "sources": [
+   "wogg_19",
+   "wogg_12",
+   "wogg_anl1",
+   "wogg_anl2",
+   "wogg_anl3",
+   "wogg_16",
+   "wogg_17",
+   "wogv_anlage",
+   "bgbl_2024_314"
+  ],
+  "grundrente": {
+   "grund": 1200,
+   "satz": 0.3,
+   "maxAnteilRbs1": 0.5,
+   "jahre": 33,
+   "source": "wogg_17a"
+  },
+  "bewilligungMonate": 12,
+  "bewilligungMax": 24,
+  "weiterAntragMonateVorher": 2,
+  "neuAntragSchwelle": 0.1,
+  "amtswegenSchwelle": 0.15,
+  "mietstufenGrenzen": [
+   -15,
+   -5,
+   5,
+   15,
+   25,
+   35
+  ],
+  "letzteErhoehung": "2025-01-01",
+  "entwurf2027": {
+   "status": "Entwurf, nicht beschlossen",
+   "drucksache": "21/8284",
+   "datum": "2026-09-30",
+   "bundesratStellungnahme": "2026-09-25",
+   "inkraftGeplant": "2027-01-01",
+   "keineFortschreibung2027": true,
+   "heizkosten": [
+    62.4,
+    80.6,
+    96.2,
+    111.8,
+    127.4
+   ],
+   "heizkostenMehr": 15.6,
+   "heizkostenCo2": [
+    14.4,
+    18.6,
+    22.2,
+    25.8,
+    29.4
+   ],
+   "heizkostenDauerhaft": [
+    48,
+    62,
+    74,
+    86,
+    98
+   ],
+   "c": [
+    6.446e-05,
+    4.803e-05,
+    3.871e-05,
+    2.781e-05,
+    2.718e-05,
+    2.623e-05,
+    2.607e-05,
+    2.607e-05,
+    2.623e-05,
+    2.623e-05,
+    3.097e-05,
+    3.492e-05
+   ],
+   "mietstufen": {
+    "Berlin": 4,
+    "Hamburg": 5,
+    "München": 7,
+    "Köln": 6,
+    "Frankfurt am Main": 6,
+    "Stuttgart": 6,
+    "Düsseldorf": 6,
+    "Leipzig": 2,
+    "Dortmund": 3,
+    "Essen": 4,
+    "Bremen": 4,
+    "Dresden": 3,
+    "Hannover": 5,
+    "Nürnberg": 5,
+    "Duisburg": 3,
+    "Bochum": 3,
+    "Wuppertal": 3,
+    "Bielefeld": 3,
+    "Bonn": 5,
+    "Münster": 5,
+    "Mannheim": 5,
+    "Karlsruhe": 4,
+    "Augsburg": 5,
+    "Wiesbaden": 6,
+    "Gelsenkirchen": 2,
+    "Mönchengladbach": 4,
+    "Aachen": 4,
+    "Braunschweig": 4,
+    "Kiel": 4,
+    "Chemnitz": 1,
+    "Halle (Saale)": 2,
+    "Magdeburg": 2,
+    "Freiburg im Breisgau": 6,
+    "Krefeld": 3,
+    "Mainz": 6,
+    "Lübeck": 4,
+    "Erfurt": 3,
+    "Oberhausen": 2,
+    "Rostock": 3,
+    "Kassel": 3,
+    "Potsdam": 4,
+    "Saarbrücken": 3,
+    "Regensburg": 5,
+    "Heidelberg": 5,
+    "Darmstadt": 6
+   },
+   "datenMietstufen": "Wohngeldstatistik 31.12.2023 und 31.12.2024",
+   "source": "btd_21_8284"
+  },
+  "abzugSatz": 0.1,
+  "formelFaktor": 1.15,
+  "einwohnerSchwelle": 10000,
+  "mietstufenSeit": "2023-01-01",
+  "mietstufenDaten": "Wohngeldstatistik zum 31. Dezember 2019 und 31. Dezember 2020"
+ },
+ "kindergeld": {
+  "betrag": 259,
+  "from": "2026-01-01",
+  "kinderfreibetragElternteil": 3414,
+  "beaElternteil": 1464,
+  "kinderfreibetragPaar": 9756,
+  "next": {
+   "status": "à venir",
+   "betrag2027": 267,
+   "betrag2028": 272,
+   "note": "Regierungsentwurf, BT-Drs. 21/8235, nicht beschlossen",
+   "source": "btd_21_8235",
+   "kinderfreibetragElternteil2027": 3564,
+   "kinderfreibetragElternteil2028": 3654,
+   "datum": "2026-09-28"
+  },
+  "sources": [
+   "estg_66",
+   "bkgg_6",
+   "estg_32",
+   "ba_kg_merkblatt"
+  ],
+  "rueckwirkendMonate": 6,
+  "altersgrenzeAusbildung": 25,
+  "altersgrenzeArbeitsuchend": 21,
+  "erwerbStundenMax": 20,
+  "uebergangMonate": 4
+ },
+ "kiz": {
+  "hoechst": 297,
+  "sofortzuschlag": 25,
+  "mindestPaar": 900,
+  "mindestAllein": 600,
+  "anrechnungKind": 0.45,
+  "anrechnungEltern": 0.45,
+  "bewilligung": 6,
+  "vermoegenErste": 40000,
+  "vermoegenWeitere": 15000,
+  "luecke": 100,
+  "wohnanteil": {
+   "allein": [
+    77,
+    63,
+    53,
+    46,
+    40
+   ],
+   "paar": [
+    83,
+    71,
+    62,
+    55,
+    50
+   ]
+  },
+  "sources": [
+   "bkgg_6a",
+   "ba_kiz_merkblatt",
+   "familienportal_kiz"
+  ],
+  "wohnkosten": null,
+  "beispiele": {
+   "note": "Beispiele aus dem Merkblatt KiZ 2 der Familienkasse, Stand Juli 2026",
+   "b1": {
+    "kinder": 3,
+    "miete": 900,
+    "einkommen": 1915,
+    "ergebnis": 736
+   },
+   "b2": {
+    "kinder": 1,
+    "miete": 800,
+    "einkommen": 2100,
+    "ergebnis": 106
+   },
+   "source": "ba_kiz_merkblatt"
+  },
+  "altersgrenze": 25,
+  "erwerbsfreibetragMax": 378,
+  "bemessungMonate": 6
+ },
+ "uvg": {
+  "from": "2026-01-01",
+  "betraege": [
+   227,
+   299,
+   394
+  ],
+  "mindestunterhalt": [
+   486,
+   558,
+   653
+  ],
+  "mindesteinkommen12": 600,
+  "sources": [
+   "uvg_1",
+   "uvg_2",
+   "bgbl_2024_359"
+  ],
+  "rueckwirkendMonate": 1,
+  "altersgrenzen": [
+   6,
+   12,
+   18
+  ],
+  "mindestZahlung": 5
+ },
+ "mutterschaft": {
+  "kasseProTag": 13,
+  "bas": 210,
+  "vorher": 42,
+  "nachher": 56,
+  "nachherLang": 84,
+  "fehlgeburt": [
+   [
+    13,
+    14
+   ],
+   [
+    17,
+    42
+   ],
+   [
+    20,
+    56
+   ]
+  ],
+  "fehlgeburtFrom": "2025-06-01",
+  "sources": [
+   "sgb5_24i",
+   "muschg_19",
+   "muschg_20",
+   "muschg_3",
+   "bgbl_2025_59"
+  ],
+  "bemessungMonate": 3,
+  "tageJeMonat": 30
+ },
+ "sanktion": {
+  "pflichtverletzung": {
+   "satz": 0.3,
+   "monate": 3
+  },
+  "meldeversaeumnis": {
+   "satz": 0.3,
+   "monate": 1
+  },
+  "hoechstSatz": 0.3,
+  "arbeitVerweigert": {
+   "mindestMonate": 1,
+   "hoechstMonate": 2
+  },
+  "nichtErreichbarTermine": 3,
+  "fristFeststellungMonate": 6,
+  "sources": [
+   "sgb2_31a",
+   "sgb2_31b",
+   "sgb2_32",
+   "sgb2_7b"
+  ]
+ },
+ "antrag": {
+  "kindergeldRueckMonate": 6,
+  "uvgRueckMonate": 1,
+  "wohngeldBewilligungMonate": 12,
+  "wohngeldBewilligungMax": 24,
+  "sources": [
+   "bkgg_5",
+   "wogg_25",
+   "uvg_4",
+   "sgb2_37"
+  ]
+ },
+ "but": {
+  "teilhabe": 15,
+  "schulbedarfJahr": 195,
+  "verjaehrungMonate": 12,
+  "bildungBisAlter": 25,
+  "teilhabeBisAlter": 18,
+  "sources": [
+   "sgb2_28",
+   "bkgg_6b",
+   "ba_kiz_merkblatt"
+  ],
+  "studienstarthilfe": 1000
+ }
+}
