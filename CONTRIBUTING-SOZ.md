@@ -57,5 +57,5 @@ Aides (`src/lib/helpers.ts`) : `h.P` (paramètres), `h.GSG`, `h.WG`, `h.KIZ`, `h
 
 - Le générateur exige la locale `en` : retirée ensuite (routes, ui, site-config) ; `_cfg` garde `en`.
 - `LEGAL_REQUIRED` sans `legalForm` (vide comme les autres sites ; `check-legal` échouait sinon).
-- Le générateur a ajouté `de-sozialleistungen.example de H` à `_trame/icones-drapeau.txt`.
+- Le générateur a ajouté `hilfenrechner.de de H` à `_trame/icones-drapeau.txt`.
 - Aucun lien vers un autre site du portefeuille.

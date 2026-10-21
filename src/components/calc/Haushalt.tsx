@@ -18,7 +18,8 @@ import { readParams, num, str, updateURL } from '../../lib/url-state';
 
 interface Props { paar?: boolean; kinder?: string; brutto1?: number; brutto2?: number; miete?: number; heizung?: number; ort?: string; unterhalt?: number; elterngeld?: number; sonstiges?: number; methodHref: string; idPrefix?: string }
 const m = (n: number) => formatMoney(Math.round(n), 0);
-const m2 = (n: number) => formatMoney(n, 2);
+/** Résultat de calculateur : euros entiers (RECETTE §4.1), les centimes restent dans le calcul. */
+const m2 = (n: number) => formatMoney(Math.round(n), 0);
 const ROEMISCH = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
 const STAEDTE = Object.entries(P.wohngeld.mietstufen as Record<string, number>).sort((a, b) => a[0].localeCompare(b[0], 'de'));
 const ORTE = [...STAEDTE.map(([s, st]) => ({ value: s, label: `${s} (Stufe ${ROEMISCH[st - 1]})` })), ...ROEMISCH.map((r, i) => ({ value: `stufe-${i + 1}`, label: `Anderer Ort, Mietstufe ${r}` }))];
@@ -92,7 +93,7 @@ export default function Haushalt({ paar: p0 = false, kinder: k0 = '4', brutto1: 
             </div>
           </details>
         </form>
-        <Ledger label={`Empfohlen: ${best.titel}`} value={m(best.verfuegbar)} unit="€ im Monat" sub="So viel Geld hat der Haushalt insgesamt, mit Lohn und Leistungen" rows={rows} total={['Leistungen zusammen', m2(best.leistungenSumme)]} notes={notes} />
+        <Ledger label={`Empfohlen: ${best.titel}`} value={m(best.verfuegbar)} unit="im Monat" sub="So viel Geld hat der Haushalt insgesamt, mit Lohn und Leistungen" rows={rows} total={['Leistungen zusammen', m2(best.leistungenSumme)]} notes={notes} />
       </div>
       <div className="mt-5">
         <h3 className="text-base font-semibold text-navy-900">Die Kombinationen im Vergleich</h3>

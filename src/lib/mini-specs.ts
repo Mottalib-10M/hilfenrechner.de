@@ -14,7 +14,8 @@ import { formatMoney, formatPercent, displayDate } from './format';
 import type { MiniSpec } from './mini-types';
 
 const m = (n: number) => formatMoney(Math.round(n), 0);
-const m2 = (n: number) => formatMoney(n, 2);
+/** Résultat de calculateur : euros entiers (RECETTE §4.1), les centimes restent dans le calcul. */
+const m2 = (n: number) => formatMoney(Math.round(n), 0);
 const STUFEN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'].map((s, i) => ({ value: String(i + 1), label: `Mietstufe ${s}` }));
 const JA_NEIN = [{ value: '1', label: 'Ja' }, { value: '0', label: 'Nein' }];
 const HAUSHALT = [{ value: '1', label: 'Alleinerziehend' }, { value: '2', label: 'Paar' }];

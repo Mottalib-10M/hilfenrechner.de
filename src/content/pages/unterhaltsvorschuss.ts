@@ -9,7 +9,7 @@ export default definePage({
   card: 'Unterhaltsvorschuss 2026: Beträge nach Alter, Voraussetzungen, Regeln ab 12 Jahren und Anrechnung auf andere Leistungen.',
   title: 'Unterhaltsvorschuss 2026: Beträge, Voraussetzungen, Antrag',
   description: 'Unterhaltsvorschuss 2026: 227 €, 299 € oder 394 € je nach Alter, Voraussetzungen, Regeln für Kinder ab 12, Antrag beim Jugendamt und Anrechnung auf Leistungen.',
-  h1: 'Unterhaltsvorschuss: Beträge und Regeln 2026',
+  h1: 'Unterhaltsvorschuss 2026: Tabelle der Beträge, Regeln, Antrag',
   intro: 'Zahlt der andere Elternteil keinen oder zu wenig Unterhalt, springt der Staat ein. Die Höhe hängt vom Alter des Kindes ab.',
   mini: { kind: 'mini:uvg' },
   related: ['alleinerziehend-leistungen', 'kinderzuschlag', 'kindergeld-2026', 'mehrbedarf', 'wohngeld-oder-grundsicherung'],

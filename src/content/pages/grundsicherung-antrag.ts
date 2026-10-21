@@ -9,7 +9,7 @@ export default definePage({
   card: 'Wo, wann und mit welchen Unterlagen, Bewilligung, Weiterbewilligung und Widerspruch.',
   title: 'Grundsicherungsgeld Antrag 2026: Unterlagen, Fristen, Ablauf',
   description: 'Grundsicherungsgeld beantragen: formloser Antrag beim Jobcenter, Rückwirkung auf den Monatsersten, Unterlagen, Bewilligung, Weiterbewilligung, Widerspruch.',
-  h1: 'Grundsicherungsgeld beantragen: Schritt für Schritt',
+  h1: 'Bürgergeld, jetzt Grundsicherungsgeld, beantragen',
   intro: 'Der Antrag ist einfacher, als die Formulare aussehen. Wichtig ist vor allem, ihn rechtzeitig zu stellen. Diese Seite zeigt den Ablauf vom ersten Satz bis zum Bescheid.',
   mini: { kind: 'mini:regelsatz' },
   related: ['grundsicherungsgeld-rechner', 'schonvermoegen', 'grundsicherung-miete', 'vorrangpruefung', 'sanktionen', 'wohngeld-antrag'],

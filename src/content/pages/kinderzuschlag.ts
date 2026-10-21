@@ -9,7 +9,7 @@ export default definePage({
   card: 'Kinderzuschlag (KiZ) 2026: Voraussetzungen, Berechnung mit den Beispielen der Familienkasse, Antrag und Zusatzleistungen.',
   title: 'Kinderzuschlag 2026: Voraussetzungen, Höhe und Antrag',
   description: 'Kinderzuschlag 2026: bis zu 297 € je Kind, Mindesteinkommen, Anrechnung von Lohn und Unterhalt, Beispiele der Familienkasse, Antrag und Bildung und Teilhabe.',
-  h1: 'Kinderzuschlag: wer ihn bekommt und wie er berechnet wird',
+  h1: 'Kinderzuschlag: wer ihn bekommt, Berechnung, Antrag',
   intro: 'Der Kinderzuschlag ist für Eltern gedacht, die für sich selbst genug verdienen, deren Einkommen aber nicht für die ganze Familie reicht. Er wird zusätzlich zum Kindergeld von der Familienkasse gezahlt.',
   mini: { kind: 'mini:kiz' },
   related: ['kinderzuschlag-rechner', 'kinderzuschlag-einkommensgrenze', 'bildung-und-teilhabe', 'wohngeld-oder-grundsicherung', 'kindergeld-2026', 'alleinerziehend-leistungen'],

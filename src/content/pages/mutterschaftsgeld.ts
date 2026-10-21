@@ -9,7 +9,7 @@ export default definePage({
   card: 'Mutterschaftsgeld 2026: 13 € am Tag von der Krankenkasse, Zuschuss des Arbeitgebers, 210 € für privat Versicherte und Schutzfristen nach Fehlgeburt.',
   title: 'Mutterschaftsgeld 2026: Höhe, Arbeitgeberzuschuss, Antrag',
   description: 'Mutterschaftsgeld 2026: bis 13 € am Tag von der Krankenkasse plus Arbeitgeberzuschuss, 210 € für privat Versicherte, Schutzfristen, Fehlgeburt und Elterngeld.',
-  h1: 'Mutterschaftsgeld in den Schutzfristen',
+  h1: 'Mutterschaftsgeld-Rechner: wie lange, wie viel, wo beantragen',
   intro: 'In den Schutzfristen ersetzen Mutterschaftsgeld und Arbeitgeberzuschuss zusammen etwa das bisherige Netto.',
   mini: { kind: 'mini:mutterschaft' },
   related: ['elterngeld-rechner', 'elterngeld-und-sozialleistungen', 'elterngeld-plus', 'kindergeld-2026', 'mehrbedarf'],

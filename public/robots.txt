@@ -3,4 +3,4 @@ Allow: /
 
 Disallow: /*?*
 
-Sitemap: https://de-sozialleistungen.example/sitemap-index.xml
+Sitemap: https://hilfenrechner.de/sitemap-index.xml

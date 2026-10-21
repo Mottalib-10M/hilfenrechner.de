@@ -24,7 +24,7 @@ export default definePage({
   card: 'Die sechs Regelsätze 2026, warum sie nicht gestiegen sind und was 2027 offen ist.',
   title: 'Bürgergeld 2026: Regelsätze, Nullrunde und neuer Name',
   description: `Bürgergeld 2026: Regelsatz ${P.regelbedarf.rbs1} € für Alleinstehende, alle sechs Stufen, warum es eine Nullrunde gab, Sofortzuschlag für Kinder und was für 2027 noch offen ist.`,
-  h1: 'Bürgergeld 2026: die Regelsätze und was aus ihnen wird',
+  h1: 'Bürgergeld 2026: Höhe der Regelsätze und was aus ihnen wird',
   intro: 'Die Regelsätze 2026 sind dieselben wie 2024 und 2025. Seit Juli heißt die Leistung Grundsicherungsgeld.',
   mini: { kind: 'mini:regelsatz' },
   related: ['neue-grundsicherung', 'buergergeld-rechner', 'mehrbedarf', 'bildung-und-teilhabe', 'grundsicherungsgeld-rechner'],

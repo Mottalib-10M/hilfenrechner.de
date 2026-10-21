@@ -1,5 +1,5 @@
 /** Configuration centrale du site (générée par new-site.py). */
-export const SITE_URL = "https://de-sozialleistungen.example";
+export const SITE_URL = "https://hilfenrechner.de";
 export const SITE_NAMES: Record<string, string> = {"de": "Hilfenrechner"};
 export const LANG_TAGS: Record<string, string> = {"de": "de-DE"};
 export const OG_LOCALES: Record<string, string> = {"de": "de_DE"};
@@ -16,7 +16,7 @@ export const AUTHOR_DESC: Record<string, string> = {"de": "Radif Partners ist ei
  *  themes reellement traites par le site, pas une liste de mots-cles : un sujet
  *  declare ici sans page qui le couvre est une declaration fausse. */
 export const KNOWS_ABOUT: Record<string, string[]> = {"de": ["Grundsicherungsgeld nach dem SGB II (ehemals Bürgergeld)", "Wohngeld nach dem Wohngeldgesetz", "Kinderzuschlag nach § 6a BKGG", "Kindergeld", "Elterngeld und ElterngeldPlus nach dem BEEG", "Unterhaltsvorschuss"]};
-export const CONTACT_EMAIL = "kontakt@de-sozialleistungen.example";
+export const CONTACT_EMAIL = "kontakt@hilfenrechner.de";
 export const THEME_COLOR = '#0E5E52';
 export const LOGO_SYMBOL = 'H';
 export const BING_VERIFY_CODE = '';

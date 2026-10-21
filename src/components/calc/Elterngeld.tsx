@@ -16,7 +16,8 @@ import type { Stkl } from '../../lib/engine/netto';
 
 interface Props { brutto?: number; stkl?: string; methodHref: string; idPrefix?: string }
 const m = (n: number) => formatMoney(Math.round(n), 0);
-const m2 = (n: number) => formatMoney(n, 2);
+/** Résultat de calculateur : euros entiers (RECETTE §4.1), les centimes restent dans le calcul. */
+const m2 = (n: number) => formatMoney(Math.round(n), 0);
 const STKL = ['1', '2', '3', '4', '5'].map((x) => ({ value: x, label: ['I', 'II', 'III', 'IV', 'V'][Number(x) - 1] }));
 
 export default function Elterngeld({ brutto: b0 = 2800, stkl: s0 = '4', methodHref, idPrefix = 'r' }: Props) {
